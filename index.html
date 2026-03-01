@@ -35,6 +35,16 @@
       --ffs: 'Fraunces', serif;
       --ffm: 'DM Mono', monospace;
       --max: 1280px;
+      /* Swagger colour palette */
+      --sw-bg: #0d1117;
+      --sw-border: rgba(255, 255, 255, .08);
+      --sw-get: #3ecf8e;
+      --sw-post: #f5c842;
+      --sw-put: #ff8c55;
+      --sw-del: #ff5f57;
+      --sw-green: rgba(62, 207, 142, .1);
+      --sw-yellow: rgba(245, 200, 66, .1);
+      --sw-orange: rgba(255, 140, 85, .1);
     }
 
     *,
@@ -88,7 +98,7 @@
       padding: 0 4rem
     }
 
-    /* NAV */
+    /* ── NAV ── */
     nav {
       position: fixed;
       top: 0;
@@ -144,6 +154,83 @@
       color: var(--a1)
     }
 
+    /* ── NAV ACTIONS (Resume + Hire Me) ── */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: .6rem
+    }
+
+    /* Resume button — highlighted pill */
+    .btn-resume {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      font-size: .6rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: .55rem 1.25rem;
+      border: 1.5px solid var(--gold);
+      color: var(--gold);
+      background: rgba(245, 200, 66, .08);
+      text-decoration: none;
+      font-family: var(--ffm);
+      font-weight: 600;
+      transition: all .25s;
+      position: relative;
+      overflow: hidden;
+      /* shimmer glow */
+      box-shadow: 0 0 12px rgba(245, 200, 66, .2);
+      animation: resumepulse 2.5s ease-in-out infinite;
+    }
+
+    .btn-resume::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(245, 200, 66, .18), transparent);
+      animation: resumeshine 2.8s ease-in-out infinite;
+    }
+
+    .btn-resume:hover {
+      background: var(--gold);
+      color: var(--ink);
+      box-shadow: 0 0 28px rgba(245, 200, 66, .5);
+      animation: none;
+    }
+
+    .btn-resume svg {
+      width: 12px;
+      height: 12px;
+      flex-shrink: 0
+    }
+
+    @keyframes resumepulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 8px rgba(245, 200, 66, .2)
+      }
+
+      50% {
+        box-shadow: 0 0 20px rgba(245, 200, 66, .45)
+      }
+    }
+
+    @keyframes resumeshine {
+      0% {
+        left: -100%
+      }
+
+      60%,
+      100% {
+        left: 130%
+      }
+    }
+
     .nav-cta {
       font-size: .65rem;
       letter-spacing: .15em;
@@ -173,7 +260,7 @@
       }
     }
 
-    /* REVEAL */
+    /* ── REVEAL ── */
     .rv {
       opacity: 0;
       transform: translateY(24px);
@@ -197,7 +284,7 @@
       transition-delay: .3s
     }
 
-    /* SECTION HEADINGS */
+    /* ── SECTION HEADINGS ── */
     .sh {
       margin-bottom: 3.5rem
     }
@@ -243,7 +330,7 @@
       font-weight: 300
     }
 
-    /* HERO */
+    /* ── HERO ── */
     #hero {
       min-height: 100vh;
       display: grid;
@@ -413,9 +500,12 @@
       margin-top: .15rem
     }
 
+    /* Hero buttons — resume inline in hero too */
     .btns {
       display: flex;
-      gap: .9rem
+      gap: .9rem;
+      flex-wrap: wrap;
+      align-items: center
     }
 
     .btn-p {
@@ -454,7 +544,38 @@
       color: var(--a1)
     }
 
-    /* Azure card */
+    /* Hero resume button variant — slightly smaller than nav one */
+    .btn-resume-hero {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      font-size: .6rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: .8rem 1.6rem;
+      border: 1.5px solid var(--gold);
+      color: var(--gold);
+      background: rgba(245, 200, 66, .07);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all .25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-resume-hero::after {
+      content: '↓';
+      margin-left: .3rem;
+      font-size: .7rem
+    }
+
+    .btn-resume-hero:hover {
+      background: var(--gold);
+      color: var(--ink);
+      box-shadow: 0 0 28px rgba(245, 200, 66, .45)
+    }
+
+    /* Azure hero card */
     .hcard {
       background: var(--card);
       border: 1px solid var(--line2);
@@ -553,7 +674,7 @@
       text-transform: uppercase
     }
 
-    /* QUOTE */
+    /* ── QUOTE ── */
     #quote {
       padding: 4.5rem 0;
       border-top: 1px solid var(--line);
@@ -596,25 +717,25 @@
 
     .qa {
       margin-top: 1.2rem;
-      font-size: .58rem;
+      font-size: .78rem;
       color: var(--muted);
       letter-spacing: .28em;
       text-transform: uppercase;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: right;
       gap: .9rem
     }
 
-    .qa::before,
-    .qa::after {
+    /* .qa::before, */
+    .qa::before {
       content: '';
       width: 36px;
       height: 1px;
       background: var(--dim)
     }
 
-    /* BACKEND */
+    /* ── BACKEND ── */
     #backend {
       padding: 6rem 0
     }
@@ -777,7 +898,7 @@
       background: var(--a1s)
     }
 
-    /* AZURE */
+    /* ── AZURE ── */
     #cloud {
       padding: 6rem 0;
       background: linear-gradient(180deg, rgba(0, 120, 212, .04), transparent);
@@ -902,7 +1023,7 @@
       color: var(--text)
     }
 
-    /* AI */
+    /* ── AI ── */
     #ai {
       padding: 6rem 0
     }
@@ -1028,7 +1149,360 @@
       background: var(--a1s)
     }
 
-    /* DOMAINS */
+    /* ── SWAGGER SECTION ── */
+    #swagger {
+      padding: 6rem 0;
+      background: linear-gradient(180deg, rgba(62, 207, 142, .025), transparent);
+      border-top: 1px solid rgba(62, 207, 142, .1)
+    }
+
+    .sw-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem
+    }
+
+    .sw-title-block {}
+
+    .sw-meta {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      flex-wrap: wrap
+    }
+
+    .sw-version {
+      font-size: .52rem;
+      letter-spacing: .12em;
+      padding: .2rem .65rem;
+      border: 1px solid rgba(62, 207, 142, .35);
+      color: var(--sw-get);
+      background: rgba(62, 207, 142, .07)
+    }
+
+    .sw-oas {
+      font-size: .52rem;
+      color: var(--muted);
+      letter-spacing: .08em
+    }
+
+    .sw-base {
+      font-size: .58rem;
+      color: var(--a1);
+      font-family: var(--ffm);
+      background: rgba(0, 170, 255, .06);
+      border: 1px solid rgba(0, 170, 255, .15);
+      padding: .28rem .75rem
+    }
+
+    /* Endpoint list */
+    .sw-list {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem
+    }
+
+    .sw-ep {
+      border: 1px solid var(--sw-border);
+      background: var(--sw-bg);
+      overflow: hidden;
+      transition: border-color .2s;
+    }
+
+    .sw-ep:hover {
+      border-color: rgba(255, 255, 255, .14)
+    }
+
+    .sw-ep-head {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: .7rem 1.1rem;
+      cursor: pointer;
+      user-select: none;
+      transition: background .2s;
+    }
+
+    .sw-ep-head:hover {
+      background: rgba(255, 255, 255, .025)
+    }
+
+    .sw-method {
+      font-size: .55rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: .22rem .7rem;
+      min-width: 58px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .m-get {
+      background: var(--sw-green);
+      color: var(--sw-get);
+      border: 1px solid rgba(62, 207, 142, .3)
+    }
+
+    .m-post {
+      background: var(--sw-yellow);
+      color: var(--sw-post);
+      border: 1px solid rgba(245, 200, 66, .3)
+    }
+
+    .m-put {
+      background: var(--sw-orange);
+      color: var(--sw-put);
+      border: 1px solid rgba(255, 140, 85, .3)
+    }
+
+    .m-del {
+      background: rgba(255, 95, 87, .1);
+      color: var(--sw-del);
+      border: 1px solid rgba(255, 95, 87, .3)
+    }
+
+    .sw-path {
+      font-family: var(--ffm);
+      font-size: .65rem;
+      color: var(--text);
+      flex: 1;
+      letter-spacing: .02em
+    }
+
+    .sw-path .param {
+      color: var(--sw-put)
+    }
+
+    .sw-summary {
+      font-size: .58rem;
+      color: var(--muted);
+      margin-left: auto;
+      text-align: right;
+      max-width: 280px
+    }
+
+    .sw-chevron {
+      color: var(--muted);
+      font-size: .7rem;
+      transition: transform .25s;
+      flex-shrink: 0
+    }
+
+    .sw-ep.open .sw-chevron {
+      transform: rotate(180deg)
+    }
+
+    /* Expanded body */
+    .sw-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s cubic-bezier(.16, 1, .3, 1);
+      border-top: 1px solid transparent;
+    }
+
+    .sw-ep.open .sw-body {
+      max-height: 600px;
+      border-top-color: var(--sw-border);
+    }
+
+    .sw-inner {
+      padding: 1.1rem 1.3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem
+    }
+
+    .sw-col-title {
+      font-size: .5rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: .65rem
+    }
+
+    /* Parameters table */
+    .sw-params {
+      width: 100%;
+      border-collapse: collapse
+    }
+
+    .sw-params th {
+      font-size: .48rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--dim);
+      padding: .3rem .5rem;
+      text-align: left;
+      border-bottom: 1px solid var(--sw-border)
+    }
+
+    .sw-params td {
+      font-size: .58rem;
+      padding: .38rem .5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .03);
+      vertical-align: top
+    }
+
+    .sw-param-name {
+      color: var(--text);
+      font-family: var(--ffm)
+    }
+
+    .sw-param-in {
+      font-size: .48rem;
+      padding: .1rem .4rem;
+      border: 1px solid;
+      letter-spacing: .08em
+    }
+
+    .pin-path {
+      border-color: rgba(255, 140, 85, .3);
+      color: var(--sw-put)
+    }
+
+    .pin-query {
+      border-color: rgba(0, 170, 255, .3);
+      color: var(--a1)
+    }
+
+    .pin-body {
+      border-color: rgba(62, 207, 142, .3);
+      color: var(--sw-get)
+    }
+
+    .pin-header {
+      border-color: rgba(245, 200, 66, .3);
+      color: var(--sw-post)
+    }
+
+    .sw-param-type {
+      font-size: .52rem;
+      color: var(--a1);
+      font-family: var(--ffm)
+    }
+
+    .sw-param-desc {
+      font-size: .52rem;
+      color: var(--muted)
+    }
+
+    .sw-req {
+      font-size: .44rem;
+      color: #ff5f57;
+      margin-left: .2rem
+    }
+
+    /* Response codes */
+    .sw-responses {
+      display: flex;
+      flex-direction: column;
+      gap: .4rem
+    }
+
+    .sw-resp {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      padding: .4rem .6rem;
+      background: rgba(255, 255, 255, .02)
+    }
+
+    .sw-code {
+      font-family: var(--ffm);
+      font-size: .65rem;
+      min-width: 38px;
+      font-weight: 600
+    }
+
+    .c-200 {
+      color: var(--sw-get)
+    }
+
+    .c-201 {
+      color: var(--sw-get)
+    }
+
+    .c-400 {
+      color: var(--sw-post)
+    }
+
+    .c-401 {
+      color: var(--sw-put)
+    }
+
+    .c-404 {
+      color: var(--sw-put)
+    }
+
+    .c-500 {
+      color: var(--sw-del)
+    }
+
+    .sw-resp-desc {
+      font-size: .56rem;
+      color: var(--muted)
+    }
+
+    .sw-resp-schema {
+      font-size: .5rem;
+      color: var(--a1);
+      font-family: var(--ffm);
+      margin-top: .2rem
+    }
+
+    /* Auth badge */
+    .sw-auth {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .5rem;
+      padding: .2rem .6rem;
+      border: 1px solid rgba(245, 200, 66, .25);
+      color: var(--sw-post);
+      background: rgba(245, 200, 66, .06);
+      margin-left: auto
+    }
+
+    /* Tag filter row */
+    .sw-tags {
+      display: flex;
+      gap: .5rem;
+      margin-bottom: 1.1rem;
+      flex-wrap: wrap
+    }
+
+    .sw-tag {
+      font-size: .52rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .28rem .8rem;
+      border: 1px solid var(--line2);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all .2s;
+      user-select: none
+    }
+
+    .sw-tag.active,
+    .sw-tag:hover {
+      border-color: var(--a1);
+      color: var(--a1);
+      background: var(--a1s)
+    }
+
+    .sw-tag-dot {
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      margin-right: .35rem
+    }
+
+    /* ── DOMAINS ── */
     #domains {
       padding: 6rem 0
     }
@@ -1143,7 +1617,7 @@
       color: var(--warm)
     }
 
-    /* EXPERIENCE */
+    /* ── EXPERIENCE ── */
     #experience {
       padding: 6rem 0
     }
@@ -1281,7 +1755,7 @@
       font-weight: 500
     }
 
-    /* PROJECTS */
+    /* ── PROJECTS ── */
     #projects {
       padding: 6rem 0;
       background: linear-gradient(180deg, transparent, rgba(0, 120, 212, .025), transparent)
@@ -1492,7 +1966,7 @@
       color: var(--dim)
     }
 
-    /* CONTACT */
+    /* ── CONTACT ── */
     #contact {
       padding: 7rem 0 5rem
     }
@@ -1637,7 +2111,7 @@
       letter-spacing: .09em
     }
 
-    /* FOOTER */
+    /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--line);
       padding: 1.8rem 4rem;
@@ -1663,14 +2137,155 @@
       color: var(--a1)
     }
 
-    /* MOBILE */
+    /* ── VISITOR COUNTER ── */
+    #vc-widget {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 300;
+      background: rgba(8, 9, 15, .94);
+      border: 1px solid var(--line2);
+      backdrop-filter: blur(14px);
+      overflow: hidden;
+      transition: all .3s cubic-bezier(.16, 1, .3, 1);
+      min-width: 46px;
+    }
+
+    #vc-widget.open {
+      min-width: 220px
+    }
+
+    .vc-tab {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .55rem .7rem;
+      cursor: pointer;
+      transition: background .2s;
+      white-space: nowrap;
+    }
+
+    .vc-tab:hover {
+      background: rgba(0, 170, 255, .05)
+    }
+
+    .vc-icon {
+      font-size: .9rem;
+      flex-shrink: 0
+    }
+
+    .vc-label {
+      font-size: .48rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      overflow: hidden;
+      max-width: 0;
+      opacity: 0;
+      transition: max-width .3s, opacity .25s
+    }
+
+    .vc-total {
+      font-family: var(--ffd);
+      font-size: 1rem;
+      color: var(--a1);
+      overflow: hidden;
+      max-width: 0;
+      opacity: 0;
+      transition: max-width .3s, opacity .25s
+    }
+
+    #vc-widget.open .vc-label,
+    #vc-widget.open .vc-total {
+      max-width: 120px;
+      opacity: 1
+    }
+
+    .vc-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s cubic-bezier(.16, 1, .3, 1)
+    }
+
+    #vc-widget.open .vc-body {
+      max-height: 260px
+    }
+
+    .vc-inner {
+      padding: .6rem .7rem;
+      border-top: 1px solid var(--line)
+    }
+
+    .vc-section-title {
+      font-size: .44rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: .55rem
+    }
+
+    .vc-row {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .22rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .025)
+    }
+
+    .vc-row:last-child {
+      border-bottom: none
+    }
+
+    .vc-month {
+      font-size: .52rem;
+      color: var(--muted);
+      min-width: 52px
+    }
+
+    .vc-bar-track {
+      flex: 1;
+      height: 2px;
+      background: rgba(0, 170, 255, .1);
+      overflow: hidden
+    }
+
+    .vc-bar {
+      height: 100%;
+      background: var(--a1);
+      transition: width .6s cubic-bezier(.16, 1, .3, 1);
+      width: 0%
+    }
+
+    .vc-n {
+      font-size: .56rem;
+      font-family: var(--ffd);
+      color: var(--a1);
+      min-width: 18px;
+      text-align: right
+    }
+
+    .vc-note {
+      font-size: .42rem;
+      color: var(--dim);
+      margin-top: .5rem;
+      line-height: 1.4
+    }
+
+    /* ── MOBILE ── */
     @media(max-width:900px) {
       nav {
         padding: 1rem 1.5rem
       }
 
-      .nav-ul,
-      .nav-cta {
+      .nav-ul {
+        display: none
+      }
+
+      .nav-actions {
+        gap: .4rem
+      }
+
+      .btn-resume span {
         display: none
       }
 
@@ -1705,6 +2320,10 @@
         grid-template-columns: 1fr 1fr
       }
 
+      .sw-inner {
+        grid-template-columns: 1fr
+      }
+
       footer {
         padding: 1.5rem;
         flex-direction: column;
@@ -1715,6 +2334,11 @@
       .st {
         font-size: 2.4rem
       }
+
+      #vc-widget {
+        bottom: .85rem;
+        right: .85rem
+      }
     }
   </style>
 </head>
@@ -1723,27 +2347,40 @@
 
   <canvas id="c"></canvas>
 
+  <!-- ══ NAV ══ -->
   <nav id="nav">
     <div class="nm">SK<b>Kalli</b><s>.</s></div>
     <ul class="nav-ul">
       <li><a href="#backend">Stack</a></li>
       <li><a href="#cloud">Azure</a></li>
       <li><a href="#ai">AI</a></li>
+      <li><a href="#swagger">API</a></li>
       <li><a href="#domains">Domains</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <a href="mailto:kallileelasaikumar@gmail.com" class="nav-cta">&#x2714; Hire Me</a>
+    <div class="nav-actions">
+      <!-- RESUME — highlighted with gold shimmer animation -->
+      <a href="__RESUME_URL__" id="resume-link" class="btn-resume" target="_blank" rel="noopener" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+          <polyline points="7 10 12 15 17 10" />
+          <line x1="12" y1="15" x2="12" y2="3" />
+        </svg>
+        <span>Resume</span>
+      </a>
+      <a href="mailto:kallileelasaikumar@gmail.com" class="nav-cta">&#x2714; Hire Me</a>
+    </div>
   </nav>
 
-  <!-- HERO -->
+  <!-- ══ HERO ══ -->
   <section id="hero">
     <div>
       <div class="avail">
         <div class="avail-dot"></div>
         <span class="avail-badge">AVAILABLE NOW</span>
-        <span class="avail-txt">Full-time &middot; Contract &middot; Remote or Hyderabad</span>
+        <span class="avail-txt">Full-time &middot; Remote</span>
       </div>
       <h1 class="hero-name">SAI<br>KUMAR<br><span class="a">KALLI</span></h1>
       <div class="hero-role">
@@ -1758,12 +2395,16 @@
       </div>
       <div class="stats">
         <div>
-          <div class="stn" data-count="4">0</div>
-          <div class="stl">Years Exp.</div>
-        </div>
-        <div>
           <div class="stn" data-count="2">0</div>
           <div class="stl">Companies</div>
+        </div>
+        <div>
+          <div class="stn" data-count="3">0</div>
+          <div class="stl">Domains/Projects</div>
+        </div>
+        <div>
+          <div class="stn" data-count="4">0</div>
+          <div class="stl">Years Exp.</div>
         </div>
         <div>
           <div class="stn">30%</div>
@@ -1772,6 +2413,10 @@
       </div>
       <div class="btns">
         <a href="#projects" class="btn-p">View Work</a>
+        <!-- Resume in hero — second highlighted CTA -->
+        <a href="__RESUME_URL__" id="resume-hero" class="btn-resume-hero" target="_blank" rel="noopener" download>
+          Resume / CV
+        </a>
         <a href="mailto:kallileelasaikumar@gmail.com" class="btn-g">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14">
             <path
@@ -1823,7 +2468,7 @@
       <p class="qt">We are the <strong>archaeologists of the future</strong> &mdash;<br>every API we forge, every
         microservice we deploy,<br>is a fossil that will outlive the hand that wrote it.<br><strong>Build with intent.
           The systems remember.</strong></p>
-      <div class="qa">Build with precision &middot; Ship with purpose &middot; Scale beyond time</div>
+      <div class="qa">Sai Kumar Kalli</div>
     </div>
   </section>
 
@@ -1842,7 +2487,7 @@
             <div class="bli">
               <div class="bli-ico">&#x2699;&#xFE0F;</div>
               <div style="flex:1">
-                <div class="bli-n">.NET Core 8 / C#</div>
+                <div class="bli-n">.NET Core 10 / C#</div>
                 <div class="bli-d">Enterprise APIs, Web Jobs, background services, clean architecture</div>
               </div>
               <div class="lv le">Expert</div>
@@ -2134,11 +2779,60 @@
     </div>
   </section>
 
+  <!-- ══ SWAGGER / API EXPLORER ══ -->
+  <section id="swagger">
+    <div class="wrap">
+      <div class="sh rv">
+        <div class="sn">04 &middot; API Design</div>
+        <h2 class="st">API <em>Explorer</em></h2>
+        <p class="ss">Production REST APIs I've designed and shipped — documented in OpenAPI / Swagger style. Versioned,
+          secured, observable.</p>
+      </div>
+
+      <div class="rv">
+        <!-- Header bar mimicking Swagger UI top bar -->
+        <div class="sw-head">
+          <div class="sw-title-block">
+            <div class="sw-meta">
+              <div class="sw-version">v2.4.1</div>
+              <div class="sw-oas">OAS 3.0</div>
+            </div>
+          </div>
+          <div class="sw-base">https://api.skk-platform.com/v2</div>
+          <div class="sw-auth">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11">
+              <rect x="3" y="11" width="18" height="11" rx="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+            Bearer / Azure AD
+          </div>
+        </div>
+
+        <!-- Tag filter chips -->
+        <div class="sw-tags" id="sw-tags">
+          <span class="sw-tag active" data-tag="all"><span class="sw-tag-dot"
+              style="background:var(--a1)"></span>All</span>
+          <span class="sw-tag" data-tag="audit"><span class="sw-tag-dot"
+              style="background:var(--gold)"></span>Audit</span>
+          <span class="sw-tag" data-tag="workforce"><span class="sw-tag-dot"
+              style="background:#3ecf8e"></span>Workforce</span>
+          <span class="sw-tag" data-tag="identity"><span class="sw-tag-dot"
+              style="background:#ff8c55"></span>Identity</span>
+          <span class="sw-tag" data-tag="notifications"><span class="sw-tag-dot"
+              style="background:#0af"></span>Notifications</span>
+        </div>
+
+        <!-- Endpoint list -->
+        <div class="sw-list" id="sw-endpoints"></div>
+      </div>
+    </div>
+  </section>
+
   <!-- DOMAINS -->
   <section id="domains">
     <div class="wrap">
       <div class="sh rv">
-        <div class="sn">04 &middot; Industries</div>
+        <div class="sn">05 &middot; Industries</div>
         <h2 class="st">Domain<br><em>Depth</em></h2>
         <p class="ss">Production experience across three complex industries &mdash; each with distinct compliance
           demands, scalability challenges and business stakes.</p>
@@ -2150,8 +2844,7 @@
           <div class="dom-n">FINTECH</div>
           <div class="dom-s">Audit &middot; Asset Management</div>
           <div class="dom-p">Architecting an enterprise Audit Automation Platform for asset management clients at
-            Ascendion &mdash; compliance workflows, audit trail integrity and financial data pipelines meeting rigorous
-            regulatory standards.</div>
+            Ascendion &mdash; compliance workflows, audit trail integrity and financial data pipelines.</div>
           <div class="dom-tags"><span class="dtt">Audit Automation</span><span class="dtt">Asset Management</span><span
               class="dtt">Compliance</span><span class="dtt">Financial APIs</span><span class="dtt">Cosmos DB</span>
           </div>
@@ -2172,7 +2865,7 @@
           <div class="dom-n">GOVTECH</div>
           <div class="dom-s">Irrigation &middot; Data Systems</div>
           <div class="dom-p">Delivered MICADA &mdash; a government irrigation management platform. Data entry modules,
-            reporting dashboards and complex SQL Server procedures for a mission-critical state-level system.</div>
+            reporting dashboards and complex SQL Server procedures.</div>
           <div class="dom-tags"><span class="dtt">ASP.NET Web Forms</span><span class="dtt">SQL Reporting</span><span
               class="dtt">Dashboards</span><span class="dtt">Stored Procs</span></div>
         </div>
@@ -2184,7 +2877,7 @@
   <section id="experience">
     <div class="wrap">
       <div class="sh rv">
-        <div class="sn">05 &middot; Career</div>
+        <div class="sn">06 &middot; Career</div>
         <h2 class="st">Where I've<br><em>shipped</em></h2>
       </div>
       <div class="tl">
@@ -2219,8 +2912,7 @@
             <ul class="tlul">
               <li>Built RESTful APIs for <strong>workforce scheduling, availability and compliance workflows</strong>
               </li>
-              <li>Implemented <strong>real-time features via SignalR</strong> for live shift notifications and updates
-              </li>
+              <li>Implemented <strong>real-time features via SignalR</strong> for live shift notifications</li>
               <li>Integrated <strong>Azure Service Bus</strong> for async processing; <strong>Redis Cache</strong> for
                 throughput</li>
               <li>Developed responsive <strong>Angular frontend</strong> with TypeScript and Bootstrap</li>
@@ -2241,7 +2933,7 @@
   <section id="projects">
     <div class="wrap">
       <div class="sh rv">
-        <div class="sn">06 &middot; Work</div>
+        <div class="sn">07 &middot; Work</div>
         <h2 class="st">Things I've<br><em>built</em></h2>
       </div>
       <div class="pjg">
@@ -2272,8 +2964,8 @@
             <div class="pjdt">Featured &middot; Current Role &middot; Ascendion Engineering</div>
             <div class="pjt">Audit Tool Automation Platform</div>
             <p class="pjd">Enterprise cloud-native audit automation for asset management firms. Full SDLC ownership.
-              25&ndash;30% API performance improvement in production. AI-powered tooling, automated audit trail,
-              document workflows via Blob Storage, zero-secret architecture via Key Vault.</p>
+              25&ndash;30% API performance improvement. AI-powered tooling, automated audit trail, document workflows
+              via Blob Storage, zero-secret architecture via Key Vault.</p>
             <div class="pjtech"><span class="ptt">.NET Core 8</span><span class="ptt">C#</span><span class="ptt">Angular
                 17</span><span class="ptt">Azure Functions</span><span class="ptt">Service Bus</span><span
                 class="ptt">Cosmos DB</span><span class="ptt">Key Vault</span><span class="ptt">App Insights</span><span
@@ -2357,7 +3049,7 @@
             <div class="pjdt">Government &middot; Data Systems</div>
             <div class="pjt">MICADA &mdash; Irrigation Platform</div>
             <p class="pjd">State-level government irrigation management. Data entry forms, reporting dashboards, user
-              management. Complex SQL Server stored procedures and Web API modules.</p>
+              management. Complex SQL Server stored procedures.</p>
             <div class="pjtech"><span class="ptt">ASP.NET Web Forms</span><span class="ptt">Web API</span><span
                 class="ptt">SQL Server</span><span class="ptt">Reporting</span></div>
           </div>
@@ -2435,140 +3127,63 @@
   </section>
 
   <footer>
-    <div class="ftl">&copy; 2025 Sai Kumar Kalli &middot; Full Stack .NET Developer &middot; Hyderabad</div>
+    <div class="ftl">&copy; 2021 Sai Kumar Kalli &middot; Full Stack .NET Developer &middot; Hyderabad</div>
     <div class="ftr">Built with <span>precision</span> &middot; Deployed on <span>Azure</span></div>
   </footer>
 
+  <!-- ══ VISITOR COUNTER WIDGET ══ -->
+  <div id="vc-widget">
+    <div class="vc-tab" id="vc-tab">
+      <span class="vc-icon">👁</span>
+      <span class="vc-label">Visitors</span>
+      <span class="vc-total" id="vc-total">—</span>
+    </div>
+    <div class="vc-body">
+      <div class="vc-inner">
+        <div class="vc-section-title">Monthly Visits · This Browser</div>
+        <div id="vc-months"></div>
+        <div class="vc-note">Stored locally · no external tracking</div>
+      </div>
+    </div>
+  </div>
+
   <script>
-    // NAV SCROLL
+    /* ─── NAV SCROLL ─── */
     var nav = document.getElementById('nav');
-    window.addEventListener('scroll', function () {
-      nav.classList.toggle('sc', window.scrollY > 50);
-    });
+    window.addEventListener('scroll', function () { nav.classList.toggle('sc', window.scrollY > 50); });
 
-    // GALAXY CANVAS
-    var cv = document.getElementById('c');
-    var ctx = cv.getContext('2d');
+    /* ─── GALAXY CANVAS ─── */
+    var cv = document.getElementById('c'), ctx = cv.getContext('2d');
     var stars = [], nebs = [], shots = [];
-
     var lastW = 0, lastH = 0;
+
     function resize() {
       var w = window.innerWidth, h = window.innerHeight;
       if (w === lastW && Math.abs(h - lastH) < 100) return;
-      lastW = w; lastH = h;
-      cv.width = w;
-      cv.height = h;
-      buildScene();
+      lastW = w; lastH = h; cv.width = w; cv.height = h; buildScene();
     }
-
     function buildScene() {
       stars = []; nebs = []; shots = [];
       var W = cv.width, H = cv.height;
-
       for (var i = 0; i < 280; i++) {
         var t = Math.random();
-        stars.push({
-          x: Math.random() * W, y: Math.random() * H,
-          r: t < .6 ? Math.random() * .55 + .18 : t < .88 ? Math.random() * .85 + .45 : Math.random() * 1.3 + .9,
-          o: t < .6 ? Math.random() * .16 + .04 : t < .88 ? Math.random() * .28 + .1 : Math.random() * .45 + .22,
-          tw: Math.random() * 6.28, ts: Math.random() * .016 + .004,
-          vx: (Math.random() - .5) * (t < .6 ? .03 : .08),
-          vy: (Math.random() - .5) * (t < .6 ? .03 : .08),
-          blue: Math.random() > .88, warm: Math.random() > .93
-        });
+        stars.push({ x: Math.random() * W, y: Math.random() * H, r: t < .6 ? Math.random() * .55 + .18 : t < .88 ? Math.random() * .85 + .45 : Math.random() * 1.3 + .9, o: t < .6 ? Math.random() * .16 + .04 : t < .88 ? Math.random() * .28 + .1 : Math.random() * .45 + .22, tw: Math.random() * 6.28, ts: Math.random() * .016 + .004, vx: (Math.random() - .5) * (t < .6 ? .03 : .08), vy: (Math.random() - .5) * (t < .6 ? .03 : .08), blue: Math.random() > .88, warm: Math.random() > .93 });
       }
-
-      for (var j = 0; j < 5; j++) {
-        nebs.push({
-          x: Math.random() * W, y: Math.random() * H,
-          r: Math.random() * 190 + 70,
-          az: Math.random() > .5,
-          o: Math.random() * .038 + .01
-        });
-      }
-
-      for (var k = 0; k < 3; k++) {
-        addShot(k * 110);
-      }
+      for (var j = 0; j < 5; j++) nebs.push({ x: Math.random() * W, y: Math.random() * H, r: Math.random() * 190 + 70, az: Math.random() > .5, o: Math.random() * .038 + .01 });
+      for (var k = 0; k < 3; k++) addShot(k * 110);
     }
-
-    function addShot(delay) {
-      shots.push({
-        x: Math.random() * cv.width * .7,
-        y: Math.random() * cv.height * .4,
-        len: Math.random() * 100 + 50,
-        spd: Math.random() * 3.2 + 2.2,
-        ang: .7854 + (Math.random() - .5) * .4,
-        life: 0, max: Math.random() * 70 + 40,
-        delay: delay !== undefined ? delay : Math.floor(Math.random() * 320)
-      });
-    }
-
+    function addShot(d) { shots.push({ x: Math.random() * cv.width * .7, y: Math.random() * cv.height * .4, len: Math.random() * 100 + 50, spd: Math.random() * 3.2 + 2.2, ang: .7854 + (Math.random() - .5) * .4, life: 0, max: Math.random() * 70 + 40, delay: d !== undefined ? d : Math.floor(Math.random() * 320) }); }
     function frame() {
       ctx.clearRect(0, 0, cv.width, cv.height);
-
-      // Nebula blobs
-      for (var n = 0; n < nebs.length; n++) {
-        var nb = nebs[n];
-        var g = ctx.createRadialGradient(nb.x, nb.y, 0, nb.x, nb.y, nb.r);
-        var col = nb.az ? '0,110,200' : '55,45,130';
-        g.addColorStop(0, 'rgba(' + col + ',' + nb.o + ')');
-        g.addColorStop(1, 'rgba(0,0,0,0)');
-        ctx.fillStyle = g;
-        ctx.beginPath(); ctx.arc(nb.x, nb.y, nb.r, 0, 6.2832); ctx.fill();
-      }
-
-      // Stars
-      for (var s = 0; s < stars.length; s++) {
-        var st = stars[s];
-        st.tw += st.ts;
-        var op = st.o * (.65 + .35 * Math.sin(st.tw));
-        st.x += st.vx; st.y += st.vy;
-        if (st.x < 0) st.x = cv.width; else if (st.x > cv.width) st.x = 0;
-        if (st.y < 0) st.y = cv.height; else if (st.y > cv.height) st.y = 0;
-
-        if (st.r > 1.0) {
-          var g2 = ctx.createRadialGradient(st.x, st.y, 0, st.x, st.y, st.r * 4);
-          var sc = st.blue ? '160,210,255' : st.warm ? '255,235,190' : '255,255,255';
-          g2.addColorStop(0, 'rgba(' + sc + ',' + (op * .4) + ')');
-          g2.addColorStop(1, 'rgba(0,0,0,0)');
-          ctx.fillStyle = g2;
-          ctx.beginPath(); ctx.arc(st.x, st.y, st.r * 4, 0, 6.2832); ctx.fill();
-        }
-
-        var fc = st.blue ? 'rgba(165,212,255,' + op + ')' : st.warm ? 'rgba(255,235,190,' + op + ')' : 'rgba(255,255,255,' + op + ')';
-        ctx.fillStyle = fc;
-        ctx.beginPath(); ctx.arc(st.x, st.y, st.r, 0, 6.2832); ctx.fill();
-      }
-
-      // Shooting stars
-      for (var i = shots.length - 1; i >= 0; i--) {
-        var sh = shots[i];
-        if (sh.delay > 0) { sh.delay--; continue; }
-        sh.life++;
-        if (sh.life > sh.max) { shots.splice(i, 1); addShot(); continue; }
-        var prog = sh.life / sh.max;
-        var al = prog < .3 ? prog / .3 : prog > .7 ? (1 - prog) / .3 : 1;
-        al = Math.min(1, al) * .8;
-        var ex = sh.x + Math.cos(sh.ang) * sh.spd * sh.life;
-        var ey = sh.y + Math.sin(sh.ang) * sh.spd * sh.life;
-        var tx = ex - Math.cos(sh.ang) * sh.len;
-        var ty = ey - Math.sin(sh.ang) * sh.len;
-        var sg = ctx.createLinearGradient(tx, ty, ex, ey);
-        sg.addColorStop(0, 'rgba(195,230,255,0)');
-        sg.addColorStop(1, 'rgba(195,230,255,' + al + ')');
-        ctx.beginPath(); ctx.moveTo(tx, ty); ctx.lineTo(ex, ey);
-        ctx.strokeStyle = sg; ctx.lineWidth = 1.1; ctx.stroke();
-      }
-
+      for (var n = 0; n < nebs.length; n++) { var nb = nebs[n]; var g = ctx.createRadialGradient(nb.x, nb.y, 0, nb.x, nb.y, nb.r); var col = nb.az ? '0,110,200' : '55,45,130'; g.addColorStop(0, 'rgba(' + col + ',' + nb.o + ')'); g.addColorStop(1, 'rgba(0,0,0,0)'); ctx.fillStyle = g; ctx.beginPath(); ctx.arc(nb.x, nb.y, nb.r, 0, 6.2832); ctx.fill(); }
+      for (var s = 0; s < stars.length; s++) { var st = stars[s]; st.tw += st.ts; var op = st.o * (.65 + .35 * Math.sin(st.tw)); st.x += st.vx; st.y += st.vy; if (st.x < 0) st.x = cv.width; else if (st.x > cv.width) st.x = 0; if (st.y < 0) st.y = cv.height; else if (st.y > cv.height) st.y = 0; if (st.r > 1.0) { var g2 = ctx.createRadialGradient(st.x, st.y, 0, st.x, st.y, st.r * 4); var sc = st.blue ? '160,210,255' : st.warm ? '255,235,190' : '255,255,255'; g2.addColorStop(0, 'rgba(' + sc + ',' + (op * .4) + ')'); g2.addColorStop(1, 'rgba(0,0,0,0)'); ctx.fillStyle = g2; ctx.beginPath(); ctx.arc(st.x, st.y, st.r * 4, 0, 6.2832); ctx.fill(); } var fc = st.blue ? 'rgba(165,212,255,' + op + ')' : st.warm ? 'rgba(255,235,190,' + op + ')' : 'rgba(255,255,255,' + op + ')'; ctx.fillStyle = fc; ctx.beginPath(); ctx.arc(st.x, st.y, st.r, 0, 6.2832); ctx.fill(); }
+      for (var i = shots.length - 1; i >= 0; i--) { var sh = shots[i]; if (sh.delay > 0) { sh.delay--; continue; } sh.life++; if (sh.life > sh.max) { shots.splice(i, 1); addShot(); continue; } var prog = sh.life / sh.max; var al = prog < .3 ? prog / .3 : prog > .7 ? (1 - prog) / .3 : 1; al = Math.min(1, al) * .8; var ex = sh.x + Math.cos(sh.ang) * sh.spd * sh.life; var ey = sh.y + Math.sin(sh.ang) * sh.spd * sh.life; var tx = ex - Math.cos(sh.ang) * sh.len; var ty = ey - Math.sin(sh.ang) * sh.len; var sg = ctx.createLinearGradient(tx, ty, ex, ey); sg.addColorStop(0, 'rgba(195,230,255,0)'); sg.addColorStop(1, 'rgba(195,230,255,' + al + ')'); ctx.beginPath(); ctx.moveTo(tx, ty); ctx.lineTo(ex, ey); ctx.strokeStyle = sg; ctx.lineWidth = 1.1; ctx.stroke(); }
       requestAnimationFrame(frame);
     }
-
     window.addEventListener('resize', resize);
-    resize();
-    frame();
+    resize(); frame();
 
-    // TYPEWRITER
+    /* ─── TYPEWRITER ─── */
     var phrases = ['Full Stack .NET Engineer', 'Azure Cloud Architect', 'AI-Augmented Developer', 'Microservices Builder', 'API Performance Expert'];
     var pi = 0, ci = phrases[0].length, del = true;
     var tyEl = document.getElementById('ty');
@@ -2580,44 +3195,249 @@
     }
     setTimeout(type, 2000);
 
-    // COUNTER
-    function counter(el, n) {
-      var c = 0, step = n / 50;
-      var t = setInterval(function () {
-        c += step; if (c >= n) { el.textContent = n + '+'; clearInterval(t); }
-        else el.textContent = Math.floor(c) + '+';
-      }, 28);
-    }
+    /* ─── COUNTER ─── */
+    function counter(el, n) { var c = 0, step = n / 50; var t = setInterval(function () { c += step; if (c >= n) { el.textContent = n + '+'; clearInterval(t); } else el.textContent = Math.floor(c) + '+'; }, 28); }
 
-    // INTERSECTION OBSERVER
+    /* ─── INTERSECTION OBSERVER ─── */
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
-        if (e.isIntersecting) {
-          e.target.classList.add('on');
-          var dc = e.target.getAttribute('data-count');
-          if (dc) {
-            counter(e.target, parseInt(dc));
-            e.target.removeAttribute('data-count');
-          }
-          io.unobserve(e.target);
-        }
+        if (e.isIntersecting) { e.target.classList.add('on'); var dc = e.target.getAttribute('data-count'); if (dc) { counter(e.target, parseInt(dc)); e.target.removeAttribute('data-count'); } io.unobserve(e.target); }
       });
     }, { threshold: 0.08 });
-
     document.querySelectorAll('.rv, .tli, [data-count]').forEach(function (el) { io.observe(el); });
 
-    // ACTIVE NAV
+    /* ─── ACTIVE NAV ─── */
     var navLinks = document.querySelectorAll('.nav-ul a');
     var sio = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) {
-          navLinks.forEach(function (l) {
-            l.classList.toggle('on', l.getAttribute('href') === '#' + e.target.id);
-          });
-        }
-      });
+      entries.forEach(function (e) { if (e.isIntersecting) navLinks.forEach(function (l) { l.classList.toggle('on', l.getAttribute('href') === '#' + e.target.id); }); });
     }, { threshold: 0.3 });
     document.querySelectorAll('section[id]').forEach(function (s) { sio.observe(s); });
+
+    /* ─────────────────────────────────────────────
+       VISITOR COUNTER  (localStorage, month-wise)
+    ───────────────────────────────────────────── */
+    (function () {
+      var KEY = 'skk_v2';
+      var data;
+      try { data = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { data = {}; }
+
+      var now = new Date();
+      var mk = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0');
+      data[mk] = (data[mk] || 0) + 1;
+      try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) { }
+
+      var total = Object.values(data).reduce(function (a, b) { return a + b; }, 0);
+      document.getElementById('vc-total').textContent = total;
+
+      var months = Object.keys(data).sort().slice(-6);
+      var max = Math.max.apply(null, months.map(function (m) { return data[m]; }));
+      var NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      var container = document.getElementById('vc-months');
+
+      months.forEach(function (m) {
+        var parts = m.split('-');
+        var label = NAMES[parseInt(parts[1]) - 1] + ' ' + parts[0].slice(2);
+        var pct = max > 0 ? Math.round(data[m] / max * 100) : 0;
+        var row = document.createElement('div');
+        row.className = 'vc-row';
+        row.innerHTML = '<span class="vc-month">' + label + '</span><div class="vc-bar-track"><div class="vc-bar" data-w="' + pct + '"></div></div><span class="vc-n">' + data[m] + '</span>';
+        container.appendChild(row);
+      });
+
+      document.getElementById('vc-tab').addEventListener('click', function () {
+        var w = document.getElementById('vc-widget');
+        w.classList.toggle('open');
+        if (w.classList.contains('open')) {
+          setTimeout(function () {
+            document.querySelectorAll('.vc-bar').forEach(function (b) {
+              b.style.width = b.getAttribute('data-w') + '%';
+            });
+          }, 80);
+        }
+      });
+    })();
+
+    /* ─────────────────────────────────────────────
+       SWAGGER-STYLE API EXPLORER
+    ───────────────────────────────────────────── */
+    var ENDPOINTS = [
+      {
+        method: 'GET', path: '/audit/engagements', summary: 'List audit engagements',
+        tag: 'audit',
+        params: [
+          { name: 'status', in: 'query', type: 'string', desc: 'Filter by status: active|closed|pending', req: false },
+          { name: 'clientId', in: 'query', type: 'guid', desc: 'Filter by client UUID', req: false },
+          { name: 'pageSize', in: 'query', type: 'int', desc: 'Results per page (default 20)', req: false }
+        ],
+        responses: [
+          { code: '200', desc: 'Paginated list of engagements', schema: 'AuditEngagementPage' },
+          { code: '401', desc: 'Unauthorized — bearer token required', schema: '' },
+          { code: '400', desc: 'Invalid query parameters', schema: 'ProblemDetails' }
+        ]
+      },
+      {
+        method: 'POST', path: '/audit/engagements', summary: 'Create engagement',
+        tag: 'audit',
+        params: [
+          { name: 'body', in: 'body', type: 'CreateEngagementRequest', desc: 'Engagement details — clientId, title, scope, assigneeIds', req: true }
+        ],
+        responses: [
+          { code: '201', desc: 'Engagement created', schema: 'AuditEngagementDto' },
+          { code: '400', desc: 'Validation failed', schema: 'ValidationProblem' },
+          { code: '401', desc: 'Unauthorized', schema: '' }
+        ]
+      },
+      {
+        method: 'GET', path: '/audit/engagements/{id}/documents', summary: 'Get engagement documents',
+        tag: 'audit',
+        params: [
+          { name: 'id', in: 'path', type: 'guid', desc: 'Engagement identifier', req: true },
+          { name: 'category', in: 'query', type: 'string', desc: 'Document category filter', req: false }
+        ],
+        responses: [
+          { code: '200', desc: 'List of document metadata', schema: 'DocumentDto[]' },
+          { code: '404', desc: 'Engagement not found', schema: 'ProblemDetails' }
+        ]
+      },
+      {
+        method: 'GET', path: '/workforce/shifts', summary: 'Get shift schedule',
+        tag: 'workforce',
+        params: [
+          { name: 'Authorization', in: 'header', type: 'Bearer', desc: 'JWT access token', req: true },
+          { name: 'date', in: 'query', type: 'date', desc: 'Schedule date (ISO 8601)', req: false },
+          { name: 'departmentId', in: 'query', type: 'guid', desc: 'Filter by department', req: false }
+        ],
+        responses: [
+          { code: '200', desc: 'Array of shift objects', schema: 'ShiftDto[]' },
+          { code: '401', desc: 'Token expired or invalid', schema: '' }
+        ]
+      },
+      {
+        method: 'PUT', path: '/workforce/shifts/{shiftId}/assign', summary: 'Assign staff to shift',
+        tag: 'workforce',
+        params: [
+          { name: 'shiftId', in: 'path', type: 'guid', desc: 'Shift identifier', req: true },
+          { name: 'body', in: 'body', type: 'AssignStaffRequest', desc: 'staffId + role', req: true }
+        ],
+        responses: [
+          { code: '200', desc: 'Assignment confirmed', schema: 'ShiftAssignmentDto' },
+          { code: '409', desc: 'Shift capacity exceeded or scheduling conflict', schema: 'ConflictProblem' },
+          { code: '404', desc: 'Shift not found', schema: 'ProblemDetails' }
+        ]
+      },
+      {
+        method: 'POST', path: '/identity/token', summary: 'Exchange credentials for JWT',
+        tag: 'identity',
+        params: [
+          { name: 'body', in: 'body', type: 'TokenRequest', desc: 'grant_type, client_id, client_secret or user credentials', req: true }
+        ],
+        responses: [
+          { code: '200', desc: 'Access + refresh token pair', schema: 'TokenResponse' },
+          { code: '400', desc: 'Invalid grant or credentials', schema: 'OAuth2Error' },
+          { code: '401', desc: 'Client authentication failed', schema: '' }
+        ]
+      },
+      {
+        method: 'DELETE', path: '/identity/sessions/{sessionId}', summary: 'Revoke session / logout',
+        tag: 'identity',
+        params: [
+          { name: 'sessionId', in: 'path', type: 'guid', desc: 'Active session UUID', req: true }
+        ],
+        responses: [
+          { code: '204', desc: 'Session revoked', schema: '' },
+          { code: '404', desc: 'Session not found', schema: '' }
+        ]
+      },
+      {
+        method: 'POST', path: '/notifications/send', summary: 'Send real-time notification via SignalR',
+        tag: 'notifications',
+        params: [
+          { name: 'body', in: 'body', type: 'NotificationRequest', desc: 'recipientIds, type, payload JSON', req: true }
+        ],
+        responses: [
+          { code: '202', desc: 'Notification queued for delivery', schema: 'NotificationReceipt' },
+          { code: '400', desc: 'Invalid recipient or payload', schema: 'ValidationProblem' }
+        ]
+      },
+      {
+        method: 'GET', path: '/notifications/hubs/status', summary: 'Check SignalR hub health',
+        tag: 'notifications',
+        params: [],
+        responses: [
+          { code: '200', desc: 'Hub online — connected clients count', schema: 'HubStatusDto' },
+          { code: '503', desc: 'Hub unavailable', schema: 'ProblemDetails' }
+        ]
+      }
+    ];
+
+    function inClass(inVal) {
+      return { path: 'pin-path', query: 'pin-query', body: 'pin-body', header: 'pin-header' }[inVal] || 'pin-query';
+    }
+    function codeClass(code) {
+      return 'c-' + code;
+    }
+
+    function buildEndpoints(tag) {
+      var list = document.getElementById('sw-endpoints');
+      list.innerHTML = '';
+      var filtered = tag === 'all' ? ENDPOINTS : ENDPOINTS.filter(function (e) { return e.tag === tag; });
+
+      filtered.forEach(function (ep, idx) {
+        var paramsRows = ep.params.map(function (p) {
+          return '<tr><td class="sw-param-name">' + p.name + (p.req ? '<span class="sw-req">*</span>' : '') + '</td><td><span class="sw-param-in ' + inClass(p.in) + '">' + p.in + '</span></td><td class="sw-param-type">' + p.type + '</td><td class="sw-param-desc">' + p.desc + '</td></tr>';
+        }).join('');
+
+        var respItems = ep.responses.map(function (r) {
+          return '<div class="sw-resp"><span class="sw-code ' + codeClass(r.code) + '">' + r.code + '</span><div><div class="sw-resp-desc">' + r.desc + '</div>' + (r.schema ? '<div class="sw-resp-schema">' + r.schema + '</div>' : '') + '</div></div>';
+        }).join('');
+
+        var pathHtml = ep.path.replace(/\{([^}]+)\}/g, '<span class="param">{$1}</span>');
+
+        var el = document.createElement('div');
+        el.className = 'sw-ep';
+        el.dataset.id = idx;
+        el.innerHTML =
+          '<div class="sw-ep-head">' +
+          '<span class="sw-method m-' + ep.method.toLowerCase() + '">' + ep.method + '</span>' +
+          '<span class="sw-path">' + pathHtml + '</span>' +
+          '<span class="sw-summary">' + ep.summary + '</span>' +
+          '<span class="sw-chevron">▾</span>' +
+          '</div>' +
+          '<div class="sw-body">' +
+          '<div class="sw-inner">' +
+          '<div>' +
+          '<div class="sw-col-title">Parameters</div>' +
+          (ep.params.length ?
+            '<table class="sw-params"><thead><tr><th>Name</th><th>In</th><th>Type</th><th>Description</th></tr></thead><tbody>' + paramsRows + '</tbody></table>'
+            : '<div style="font-size:.55rem;color:var(--dim)">No parameters</div>') +
+          '</div>' +
+          '<div>' +
+          '<div class="sw-col-title">Responses</div>' +
+          '<div class="sw-responses">' + respItems + '</div>' +
+          '</div>' +
+          '</div>' +
+          '</div>';
+
+        el.querySelector('.sw-ep-head').addEventListener('click', function () {
+          var isOpen = el.classList.contains('open');
+          document.querySelectorAll('.sw-ep.open').forEach(function (x) { x.classList.remove('open'); });
+          if (!isOpen) el.classList.add('open');
+        });
+
+        list.appendChild(el);
+      });
+    }
+
+    // Tag filter
+    document.querySelectorAll('.sw-tag').forEach(function (tag) {
+      tag.addEventListener('click', function () {
+        document.querySelectorAll('.sw-tag').forEach(function (t) { t.classList.remove('active'); });
+        tag.classList.add('active');
+        buildEndpoints(tag.dataset.tag);
+      });
+    });
+
+    buildEndpoints('all');
   </script>
 </body>
 
