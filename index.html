@@ -1,0 +1,2634 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sai Kumar Kalli — Full Stack .NET Engineer</title>
+  <meta name="description"
+    content="Sai Kumar Kalli — Full Stack .NET Developer. 4+ years Azure cloud-native microservices." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&family=Fraunces:opsz,wght@9..144,300;9..144,400&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink: #08090f;
+      --surface: #0c0d18;
+      --card: #10111f;
+      --card2: #13142a;
+      --line: rgba(255, 255, 255, .06);
+      --line2: rgba(255, 255, 255, .12);
+      --a1: #0af;
+      --a1s: rgba(0, 170, 255, .06);
+      --azure: #0078d4;
+      --azg: rgba(0, 120, 212, .15);
+      --gold: #f5c842;
+      --goldg: rgba(245, 200, 66, .1);
+      --warm: #ff8c55;
+      --text: #dde3f0;
+      --muted: #5a6480;
+      --dim: #363d56;
+      --ffd: 'Bebas Neue', sans-serif;
+      --ffs: 'Fraunces', serif;
+      --ffm: 'DM Mono', monospace;
+      --max: 1280px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--ink);
+      color: var(--text);
+      font-family: var(--ffm);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased
+    }
+
+    ::-webkit-scrollbar {
+      width: 3px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--ink)
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--a1)
+    }
+
+    #c {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: .8
+    }
+
+    section {
+      position: relative;
+      z-index: 2
+    }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 4rem
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 4rem;
+      transition: all .4s
+    }
+
+    nav.sc {
+      background: rgba(8, 9, 15, .96);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--line)
+    }
+
+    .nm {
+      font-family: var(--ffd);
+      font-size: 1.4rem;
+      letter-spacing: .06em
+    }
+
+    .nm b {
+      color: var(--a1)
+    }
+
+    .nm s {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 1rem
+    }
+
+    .nav-ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none
+    }
+
+    .nav-ul a {
+      font-size: .62rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      transition: color .2s
+    }
+
+    .nav-ul a:hover,
+    .nav-ul a.on {
+      color: var(--a1)
+    }
+
+    .nav-cta {
+      font-size: .65rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      padding: .6rem 1.75rem;
+      background: var(--a1);
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 700;
+      animation: pulse 3s ease-in-out infinite
+    }
+
+    .nav-cta:hover {
+      background: #fff;
+      animation: none
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(0, 170, 255, .4)
+      }
+
+      55% {
+        box-shadow: 0 0 16px 5px rgba(0, 170, 255, .22)
+      }
+    }
+
+    /* REVEAL */
+    .rv {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .65s cubic-bezier(.16, 1, .3, 1), transform .65s cubic-bezier(.16, 1, .3, 1)
+    }
+
+    .rv.on {
+      opacity: 1;
+      transform: none
+    }
+
+    .rv.d1 {
+      transition-delay: .1s
+    }
+
+    .rv.d2 {
+      transition-delay: .2s
+    }
+
+    .rv.d3 {
+      transition-delay: .3s
+    }
+
+    /* SECTION HEADINGS */
+    .sh {
+      margin-bottom: 3.5rem
+    }
+
+    .sn {
+      font-size: .58rem;
+      color: var(--dim);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: .7rem;
+      display: flex;
+      align-items: center;
+      gap: .7rem
+    }
+
+    .sn::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--dim)
+    }
+
+    .st {
+      font-family: var(--ffd);
+      font-size: clamp(2.8rem, 5vw, 5rem);
+      color: var(--text);
+      letter-spacing: .03em;
+      line-height: 1
+    }
+
+    .st em {
+      font-style: normal;
+      color: var(--a1)
+    }
+
+    .ss {
+      font-family: var(--ffs);
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 500px;
+      margin-top: .9rem;
+      font-weight: 300
+    }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 390px;
+      align-items: center;
+      gap: 4rem;
+      padding: 0 4rem;
+      padding-top: 6rem
+    }
+
+    .avail {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      padding: .45rem .9rem .45rem .6rem;
+      background: rgba(62, 207, 142, .06);
+      border: 1px solid rgba(62, 207, 142, .2);
+      width: fit-content;
+      margin-bottom: 1.4rem
+    }
+
+    .avail-dot {
+      width: 6px;
+      height: 6px;
+      background: #3f3;
+      border-radius: 50%;
+      animation: blink 2s infinite;
+      box-shadow: 0 0 5px #3f3
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: .3
+      }
+    }
+
+    .avail-badge {
+      font-size: .5rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      background: #3ecf8e;
+      color: #000;
+      padding: .12rem .5rem;
+      font-weight: 700
+    }
+
+    .avail-txt {
+      font-size: .58rem;
+      color: #3ecf8e;
+      letter-spacing: .07em
+    }
+
+    .hero-name {
+      font-family: var(--ffd);
+      font-size: clamp(4rem, 9vw, 8.5rem);
+      line-height: .92;
+      letter-spacing: .02em;
+      color: var(--text);
+      margin-bottom: 1.4rem
+    }
+
+    .hero-name .a {
+      color: var(--a1)
+    }
+
+    .hero-role {
+      font-family: var(--ffs);
+      font-size: 1rem;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.6;
+      margin-bottom: 1.8rem;
+      max-width: 460px
+    }
+
+    #ty {
+      color: var(--text);
+      font-weight: 400
+    }
+
+    .caret {
+      display: inline-block;
+      width: 2px;
+      height: .85em;
+      background: var(--a1);
+      margin-left: 1px;
+      vertical-align: bottom;
+      animation: caretblink 1s infinite
+    }
+
+    @keyframes caretblink {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0
+      }
+    }
+
+    .domains {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .45rem;
+      margin-bottom: 1.8rem
+    }
+
+    .db {
+      font-size: .56rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: .28rem .8rem;
+      border: 1px solid
+    }
+
+    .db.fin {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: var(--goldg)
+    }
+
+    .db.hlt {
+      border-color: #3ecf8e;
+      color: #3ecf8e;
+      background: rgba(62, 207, 142, .08)
+    }
+
+    .db.gov {
+      border-color: var(--warm);
+      color: var(--warm);
+      background: rgba(255, 140, 85, .08)
+    }
+
+    .db.cld {
+      border-color: var(--azure);
+      color: #57acff;
+      background: var(--azg)
+    }
+
+    .stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-bottom: 2.2rem
+    }
+
+    .stn {
+      font-family: var(--ffd);
+      font-size: 2.6rem;
+      color: var(--a1);
+      line-height: 1;
+      letter-spacing: .03em
+    }
+
+    .stl {
+      font-size: .56rem;
+      color: var(--muted);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-top: .15rem
+    }
+
+    .btns {
+      display: flex;
+      gap: .9rem
+    }
+
+    .btn-p {
+      font-size: .62rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: .8rem 2rem;
+      background: var(--a1);
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 700;
+      transition: all .25s
+    }
+
+    .btn-p:hover {
+      background: #fff;
+      box-shadow: 0 0 30px rgba(0, 170, 255, .45)
+    }
+
+    .btn-g {
+      font-size: .62rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: .8rem 2rem;
+      border: 1px solid var(--line2);
+      color: var(--muted);
+      text-decoration: none;
+      transition: all .25s;
+      display: flex;
+      align-items: center;
+      gap: .45rem
+    }
+
+    .btn-g:hover {
+      border-color: var(--a1);
+      color: var(--a1)
+    }
+
+    /* Azure card */
+    .hcard {
+      background: var(--card);
+      border: 1px solid var(--line2);
+      padding: 1.6rem;
+      position: relative;
+      overflow: hidden
+    }
+
+    .hcard::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--azure), var(--a1), var(--azure));
+      background-size: 200%;
+      animation: shimmer 3s linear infinite
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: -200%
+      }
+
+      100% {
+        background-position: 200%
+      }
+    }
+
+    .hcl {
+      font-size: .52rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: #57acff;
+      margin-bottom: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: .45rem
+    }
+
+    .hct {
+      font-family: var(--ffd);
+      font-size: 1.5rem;
+      letter-spacing: .06em;
+      margin-bottom: .9rem
+    }
+
+    .hcr {
+      display: flex;
+      justify-content: space-between;
+      padding: .58rem 0;
+      border-bottom: 1px solid var(--line)
+    }
+
+    .hcr:last-of-type {
+      border-bottom: none
+    }
+
+    .hck {
+      font-size: .58rem;
+      color: var(--muted)
+    }
+
+    .hcv {
+      font-size: .62rem;
+      color: var(--a1)
+    }
+
+    .hcv.g {
+      color: #3ecf8e
+    }
+
+    .hcv.gd {
+      color: var(--gold)
+    }
+
+    .hcm {
+      margin-top: 1.1rem;
+      padding: .9rem;
+      background: rgba(0, 120, 212, .08);
+      border: 1px solid rgba(0, 120, 212, .2);
+      text-align: center
+    }
+
+    .hcmn {
+      font-family: var(--ffd);
+      font-size: 2.4rem;
+      color: #57acff
+    }
+
+    .hcml {
+      font-size: .52rem;
+      color: var(--muted);
+      letter-spacing: .18em;
+      text-transform: uppercase
+    }
+
+    /* QUOTE */
+    #quote {
+      padding: 4.5rem 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(90deg, rgba(0, 120, 212, .04), rgba(0, 170, 255, .06), rgba(0, 120, 212, .04));
+      z-index: 2;
+      position: relative
+    }
+
+    .qi {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 4rem;
+      text-align: center
+    }
+
+    .qm {
+      font-family: var(--ffd);
+      font-size: 5rem;
+      color: var(--a1);
+      opacity: .12;
+      line-height: .7;
+      margin-bottom: .4rem
+    }
+
+    .qt {
+      font-family: var(--ffs);
+      font-size: clamp(1.25rem, 2.3vw, 1.85rem);
+      font-weight: 300;
+      line-height: 1.5;
+      color: var(--text);
+      font-style: italic
+    }
+
+    .qt strong {
+      font-style: normal;
+      font-weight: 600;
+      color: var(--a1)
+    }
+
+    .qa {
+      margin-top: 1.2rem;
+      font-size: .58rem;
+      color: var(--muted);
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .9rem
+    }
+
+    .qa::before,
+    .qa::after {
+      content: '';
+      width: 36px;
+      height: 1px;
+      background: var(--dim)
+    }
+
+    /* BACKEND */
+    #backend {
+      padding: 6rem 0
+    }
+
+    .beg {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 2.5rem;
+      align-items: start
+    }
+
+    .bsl {
+      display: flex;
+      flex-direction: column;
+      gap: .7rem;
+      margin-top: 1.5rem
+    }
+
+    .bli {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      padding: 1rem 1.4rem;
+      background: var(--card);
+      border: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+      transition: all .3s
+    }
+
+    .bli::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--a1);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform .3s
+    }
+
+    .bli:hover {
+      background: var(--card2);
+      border-color: var(--line2)
+    }
+
+    .bli:hover::before {
+      transform: scaleY(1)
+    }
+
+    .bli-ico {
+      font-size: 1.2rem;
+      min-width: 1.8rem;
+      text-align: center
+    }
+
+    .bli-n {
+      font-size: .72rem;
+      color: var(--text);
+      letter-spacing: .04em;
+      margin-bottom: .18rem
+    }
+
+    .bli-d {
+      font-size: .56rem;
+      color: var(--muted);
+      line-height: 1.5
+    }
+
+    .lv {
+      font-size: .52rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .18rem .55rem;
+      border: 1px solid;
+      flex-shrink: 0
+    }
+
+    .le {
+      border-color: rgba(0, 170, 255, .3);
+      color: var(--a1);
+      background: var(--a1s)
+    }
+
+    .la {
+      border-color: rgba(245, 200, 66, .3);
+      color: var(--gold);
+      background: var(--goldg)
+    }
+
+    .lp {
+      border-color: rgba(62, 207, 142, .3);
+      color: #3ecf8e;
+      background: rgba(62, 207, 142, .07)
+    }
+
+    .ac {
+      background: var(--card);
+      border: 1px solid var(--line2);
+      padding: 1.8rem;
+      margin-bottom: .9rem
+    }
+
+    .ac-t {
+      font-size: .58rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--a1);
+      margin-bottom: 1.3rem
+    }
+
+    .ac-l {
+      position: relative;
+      padding: .8rem 1rem .8rem 2.8rem;
+      border-left: 1px solid var(--line2);
+      margin-bottom: .45rem
+    }
+
+    .ac-l::before {
+      content: attr(data-n);
+      position: absolute;
+      left: -1px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: .52rem;
+      color: var(--a1);
+      background: var(--ink);
+      padding: .1rem .28rem;
+      border: 1px solid rgba(0, 170, 255, .3)
+    }
+
+    .ac-lt {
+      font-size: .62rem;
+      color: var(--text);
+      letter-spacing: .07em;
+      margin-bottom: .3rem
+    }
+
+    .ac-li {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .32rem
+    }
+
+    .chip {
+      font-size: .52rem;
+      padding: .16rem .55rem;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      background: var(--surface);
+      transition: all .2s
+    }
+
+    .chip.h,
+    .chip:hover {
+      border-color: rgba(0, 170, 255, .3);
+      color: var(--a1);
+      background: var(--a1s)
+    }
+
+    /* AZURE */
+    #cloud {
+      padding: 6rem 0;
+      background: linear-gradient(180deg, rgba(0, 120, 212, .04), transparent);
+      border-top: 1px solid rgba(0, 120, 212, .1);
+      border-bottom: 1px solid rgba(0, 120, 212, .1)
+    }
+
+    .cwrap {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 2.5rem;
+      margin-bottom: 3rem
+    }
+
+    .azb {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.4rem 2rem;
+      border: 1px solid rgba(0, 120, 212, .3);
+      background: rgba(0, 120, 212, .06);
+      min-width: 150px
+    }
+
+    .azbt {
+      font-family: var(--ffd);
+      font-size: 1.1rem;
+      letter-spacing: .1em;
+      color: #57acff;
+      margin-top: .55rem
+    }
+
+    .azbs {
+      font-size: .52rem;
+      color: var(--muted);
+      letter-spacing: .14em;
+      margin-top: .18rem
+    }
+
+    .csg {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line)
+    }
+
+    .cs {
+      background: var(--card);
+      padding: 1.4rem;
+      transition: all .3s;
+      position: relative
+    }
+
+    .cs::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--azure);
+      transform: scaleX(0);
+      transition: transform .3s
+    }
+
+    .cs:hover {
+      background: var(--card2)
+    }
+
+    .cs:hover::after {
+      transform: scaleX(1)
+    }
+
+    .cs-i {
+      font-size: 1.4rem;
+      margin-bottom: .65rem
+    }
+
+    .cs-n {
+      font-size: .65rem;
+      color: var(--text);
+      margin-bottom: .3rem
+    }
+
+    .cs-d {
+      font-size: .54rem;
+      color: var(--muted);
+      line-height: 1.55
+    }
+
+    .cs-b {
+      display: inline-block;
+      margin-top: .65rem;
+      font-size: .48rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .18rem .48rem;
+      border: 1px solid rgba(0, 120, 212, .3);
+      color: #57acff;
+      background: rgba(0, 120, 212, .08)
+    }
+
+    .cn {
+      margin-top: 1.8rem;
+      padding: 1rem 1.4rem;
+      border: 1px solid rgba(0, 120, 212, .2);
+      background: rgba(0, 120, 212, .05);
+      display: flex;
+      align-items: center;
+      gap: .9rem
+    }
+
+    .cn-t {
+      font-size: .62rem;
+      color: var(--muted);
+      line-height: 1.5
+    }
+
+    .cn-t strong {
+      color: var(--text)
+    }
+
+    /* AI */
+    #ai {
+      padding: 6rem 0
+    }
+
+    .ai-intro {
+      max-width: 600px;
+      margin-bottom: 2.5rem;
+      font-family: var(--ffs);
+      font-size: 1rem;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.7
+    }
+
+    .ai-intro strong {
+      color: var(--text)
+    }
+
+    .aig {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.1rem;
+      margin-bottom: 1.8rem
+    }
+
+    .aic {
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 1.6rem;
+      position: relative;
+      overflow: hidden;
+      transition: all .32s
+    }
+
+    .aic::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--a1), transparent);
+      opacity: 0;
+      transition: opacity .3s
+    }
+
+    .aic:hover {
+      border-color: var(--line2);
+      transform: translateY(-3px);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, .45)
+    }
+
+    .aic:hover::before {
+      opacity: 1
+    }
+
+    .ai-logo {
+      margin-bottom: .8rem
+    }
+
+    .ai-n {
+      font-size: .72rem;
+      color: var(--text);
+      letter-spacing: .05em;
+      margin-bottom: .35rem
+    }
+
+    .ai-cat {
+      font-size: .5rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--a1);
+      margin-bottom: .7rem
+    }
+
+    .ai-d {
+      font-size: .6rem;
+      color: var(--muted);
+      line-height: 1.65
+    }
+
+    .ai-u {
+      margin-top: .8rem;
+      padding: .55rem .8rem;
+      background: var(--a1s);
+      border: 1px solid rgba(0, 170, 255, .12)
+    }
+
+    .ai-ul {
+      font-size: .5rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--a1);
+      margin-bottom: .25rem
+    }
+
+    .ai-ut {
+      font-size: .58rem;
+      color: var(--muted)
+    }
+
+    .aitr {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .65rem;
+      padding: 1.3rem;
+      background: var(--card);
+      border: 1px solid var(--line)
+    }
+
+    .aitp {
+      font-size: .58rem;
+      letter-spacing: .08em;
+      padding: .3rem .9rem;
+      border: 1px solid var(--line2);
+      color: var(--muted);
+      transition: all .2s
+    }
+
+    .aitp:hover {
+      border-color: var(--a1);
+      color: var(--a1);
+      background: var(--a1s)
+    }
+
+    /* DOMAINS */
+    #domains {
+      padding: 6rem 0
+    }
+
+    .domg {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.3rem;
+      margin-top: 2.5rem
+    }
+
+    .domc {
+      border: 1px solid var(--line);
+      background: var(--card);
+      padding: 1.8rem;
+      position: relative;
+      overflow: hidden;
+      transition: all .32s
+    }
+
+    .domc:hover {
+      transform: translateY(-4px)
+    }
+
+    .dal {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px
+    }
+
+    .domc.fin .dal {
+      background: linear-gradient(90deg, var(--gold), rgba(245, 200, 66, .2))
+    }
+
+    .domc.fin:hover {
+      border-color: rgba(245, 200, 66, .25);
+      box-shadow: 0 18px 50px rgba(245, 200, 66, .05)
+    }
+
+    .domc.hlt .dal {
+      background: linear-gradient(90deg, #3ecf8e, rgba(62, 207, 142, .2))
+    }
+
+    .domc.hlt:hover {
+      border-color: rgba(62, 207, 142, .25)
+    }
+
+    .domc.gov .dal {
+      background: linear-gradient(90deg, var(--warm), rgba(255, 140, 85, .2))
+    }
+
+    .domc.gov:hover {
+      border-color: rgba(255, 140, 85, .25)
+    }
+
+    .dom-i {
+      font-size: 2rem;
+      margin-bottom: 1.1rem
+    }
+
+    .dom-n {
+      font-family: var(--ffd);
+      font-size: 1.6rem;
+      letter-spacing: .04em;
+      color: var(--text);
+      margin-bottom: .35rem
+    }
+
+    .dom-s {
+      font-size: .58rem;
+      color: var(--muted);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: 1.1rem
+    }
+
+    .dom-p {
+      font-size: .65rem;
+      color: var(--muted);
+      line-height: 1.72;
+      margin-bottom: 1.1rem
+    }
+
+    .dom-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .35rem
+    }
+
+    .dtt {
+      font-size: .52rem;
+      padding: .18rem .6rem;
+      border: 1px solid var(--line);
+      color: var(--dim);
+      transition: all .2s
+    }
+
+    .domc.fin .dtt:hover {
+      border-color: var(--gold);
+      color: var(--gold)
+    }
+
+    .domc.hlt .dtt:hover {
+      border-color: #3ecf8e;
+      color: #3ecf8e
+    }
+
+    .domc.gov .dtt:hover {
+      border-color: var(--warm);
+      color: var(--warm)
+    }
+
+    /* EXPERIENCE */
+    #experience {
+      padding: 6rem 0
+    }
+
+    .tl {
+      position: relative;
+      padding-left: 1.8rem
+    }
+
+    .tl::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(180deg, var(--a1), rgba(0, 170, 255, .15), transparent)
+    }
+
+    .tli {
+      position: relative;
+      margin-bottom: 3rem;
+      opacity: 0;
+      transform: translateX(-14px);
+      transition: all .55s cubic-bezier(.16, 1, .3, 1)
+    }
+
+    .tli.on {
+      opacity: 1;
+      transform: none
+    }
+
+    .tld {
+      position: absolute;
+      left: -2.15rem;
+      top: .25rem;
+      width: 13px;
+      height: 13px;
+      border: 2px solid var(--a1);
+      background: var(--ink);
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(0, 170, 255, .3)
+    }
+
+    .tld::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 5px;
+      height: 5px;
+      background: var(--a1);
+      border-radius: 50%
+    }
+
+    .tl-p {
+      font-size: .56rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--a1);
+      margin-bottom: .5rem
+    }
+
+    .tl-co {
+      font-family: var(--ffd);
+      font-size: 1.65rem;
+      letter-spacing: .04em;
+      margin-bottom: .18rem
+    }
+
+    .tl-ro {
+      font-size: .62rem;
+      color: var(--muted);
+      letter-spacing: .09em;
+      margin-bottom: 1.1rem
+    }
+
+    .tlb {
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 1.4rem
+    }
+
+    .tlpt {
+      display: inline-block;
+      font-size: .52rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: .22rem .7rem;
+      margin-bottom: .9rem
+    }
+
+    .tlpt.gd {
+      background: var(--goldg);
+      border: 1px solid rgba(245, 200, 66, .22);
+      color: var(--gold)
+    }
+
+    .tlpt.gr {
+      background: rgba(62, 207, 142, .07);
+      border: 1px solid rgba(62, 207, 142, .22);
+      color: #3ecf8e
+    }
+
+    .tlpt.wm {
+      background: rgba(255, 140, 85, .07);
+      border: 1px solid rgba(255, 140, 85, .22);
+      color: var(--warm);
+      margin-top: .9rem
+    }
+
+    .tlul {
+      list-style: none
+    }
+
+    .tlul li {
+      font-size: .68rem;
+      color: var(--muted);
+      line-height: 1.72;
+      padding-left: 1rem;
+      position: relative;
+      margin-bottom: .35rem
+    }
+
+    .tlul li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--a1)
+    }
+
+    .tlul li strong {
+      color: var(--text);
+      font-weight: 500
+    }
+
+    /* PROJECTS */
+    #projects {
+      padding: 6rem 0;
+      background: linear-gradient(180deg, transparent, rgba(0, 120, 212, .025), transparent)
+    }
+
+    .pjg {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.3rem
+    }
+
+    .pjc {
+      background: var(--card);
+      border: 1px solid var(--line);
+      overflow: hidden;
+      transition: all .35s
+    }
+
+    .pjc:hover {
+      transform: translateY(-5px);
+      border-color: var(--line2);
+      box-shadow: 0 20px 55px rgba(0, 0, 0, .5)
+    }
+
+    .pjc.ft {
+      grid-column: span 2
+    }
+
+    .pjmk {
+      height: 190px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      overflow: hidden
+    }
+
+    .pjc.ft .pjmk {
+      height: 230px
+    }
+
+    .pmbr {
+      position: absolute;
+      inset: 1.1rem;
+      background: var(--ink);
+      border: 1px solid var(--line2);
+      border-radius: 3px 3px 0 0;
+      overflow: hidden
+    }
+
+    .pmba {
+      height: 24px;
+      background: rgba(255, 255, 255, .025);
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      padding: 0 .65rem;
+      gap: .3rem
+    }
+
+    .pmd {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%
+    }
+
+    .pmbo {
+      padding: .75rem;
+      display: flex;
+      flex-direction: column;
+      gap: .35rem
+    }
+
+    .pml {
+      height: 4px;
+      background: var(--line);
+      border-radius: 1px
+    }
+
+    .pml.a {
+      background: rgba(0, 170, 255, .18);
+      width: 52%
+    }
+
+    .pml.b {
+      width: 78%
+    }
+
+    .pml.c {
+      width: 62%
+    }
+
+    .pmcl {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: .35rem;
+      margin-top: .18rem
+    }
+
+    .pmcb {
+      height: 38px;
+      background: var(--line);
+      position: relative;
+      overflow: hidden
+    }
+
+    .pmcb::after {
+      content: '';
+      position: absolute;
+      inset-block: 0;
+      left: -100%;
+      width: 55%;
+      background: linear-gradient(90deg, transparent, rgba(0, 170, 255, .07), transparent);
+      animation: scan 3.2s infinite ease-in-out
+    }
+
+    @keyframes scan {
+      0% {
+        left: -55%
+      }
+
+      100% {
+        left: 100%
+      }
+    }
+
+    .pmcb.h {
+      background: rgba(0, 120, 212, .1)
+    }
+
+    .pmcb.g {
+      background: rgba(245, 200, 66, .07)
+    }
+
+    .pmcb.r {
+      background: rgba(62, 207, 142, .07)
+    }
+
+    .pjbg {
+      position: absolute;
+      top: .7rem;
+      right: .7rem;
+      font-size: .48rem;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+      padding: .18rem .55rem
+    }
+
+    .pbfin {
+      background: var(--goldg);
+      border: 1px solid rgba(245, 200, 66, .3);
+      color: var(--gold)
+    }
+
+    .pbhc {
+      background: rgba(62, 207, 142, .08);
+      border: 1px solid rgba(62, 207, 142, .3);
+      color: #3ecf8e
+    }
+
+    .pbgov {
+      background: rgba(255, 140, 85, .08);
+      border: 1px solid rgba(255, 140, 85, .3);
+      color: var(--warm)
+    }
+
+    .pbsd {
+      background: var(--a1s);
+      border: 1px solid rgba(0, 170, 255, .25);
+      color: var(--a1)
+    }
+
+    .pji {
+      padding: 1.4rem
+    }
+
+    .pjdt {
+      font-size: .52rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--a1);
+      margin-bottom: .55rem
+    }
+
+    .pjt {
+      font-family: var(--ffd);
+      font-size: 1.4rem;
+      letter-spacing: .04em;
+      margin-bottom: .55rem
+    }
+
+    .pjd {
+      font-size: .65rem;
+      color: var(--muted);
+      line-height: 1.72;
+      margin-bottom: .9rem
+    }
+
+    .pjtech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .3rem
+    }
+
+    .ptt {
+      font-size: .52rem;
+      padding: .15rem .55rem;
+      border: 1px solid var(--line);
+      color: var(--dim)
+    }
+
+    /* CONTACT */
+    #contact {
+      padding: 7rem 0 5rem
+    }
+
+    .cog {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4.5rem;
+      align-items: start
+    }
+
+    .coh {
+      font-family: var(--ffd);
+      font-size: clamp(3.2rem, 5.5vw, 5.5rem);
+      letter-spacing: .02em;
+      line-height: .94;
+      margin-bottom: 1.4rem
+    }
+
+    .coh span {
+      color: var(--a1);
+      display: block
+    }
+
+    .cos {
+      font-family: var(--ffs);
+      font-size: .95rem;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.72;
+      margin-bottom: 2.2rem
+    }
+
+    .copb {
+      display: inline-flex;
+      align-items: center;
+      gap: .7rem;
+      font-size: .68rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      padding: .95rem 2.2rem;
+      background: var(--a1);
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 700;
+      transition: all .25s
+    }
+
+    .copb:hover {
+      background: #fff;
+      box-shadow: 0 0 36px rgba(0, 170, 255, .4)
+    }
+
+    .copb svg {
+      width: 15px;
+      height: 15px
+    }
+
+    .cll {
+      display: flex;
+      flex-direction: column;
+      gap: .7rem;
+      margin-bottom: 1.8rem
+    }
+
+    .cli {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      padding: .95rem 1.1rem;
+      background: var(--card);
+      border: 1px solid var(--line);
+      text-decoration: none;
+      transition: all .3s
+    }
+
+    .cli:hover {
+      border-color: var(--a1);
+      background: var(--a1s)
+    }
+
+    .clico {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line2);
+      color: var(--muted);
+      transition: all .3s;
+      flex-shrink: 0
+    }
+
+    .cli:hover .clico {
+      border-color: var(--a1);
+      color: var(--a1)
+    }
+
+    .clico svg {
+      width: 13px;
+      height: 13px
+    }
+
+    .cllb {
+      font-size: .52rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: .18rem
+    }
+
+    .cllv {
+      font-size: .68rem;
+      color: var(--text)
+    }
+
+    .cli:hover .cllv {
+      color: var(--a1)
+    }
+
+    .avb {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      padding: .8rem 1.1rem;
+      border: 1px solid rgba(62, 207, 142, .22);
+      background: rgba(62, 207, 142, .04)
+    }
+
+    .avbd {
+      width: 7px;
+      height: 7px;
+      background: #3ecf8e;
+      border-radius: 50%;
+      animation: blink 2s infinite;
+      box-shadow: 0 0 7px #3ecf8e
+    }
+
+    .avbt {
+      font-size: .6rem;
+      color: #3ecf8e;
+      letter-spacing: .09em
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 1.8rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 2
+    }
+
+    .ftl {
+      font-size: .58rem;
+      color: var(--muted);
+      letter-spacing: .09em
+    }
+
+    .ftr {
+      font-size: .58rem;
+      color: var(--muted)
+    }
+
+    .ftr span {
+      color: var(--a1)
+    }
+
+    /* MOBILE */
+    @media(max-width:900px) {
+      nav {
+        padding: 1rem 1.5rem
+      }
+
+      .nav-ul,
+      .nav-cta {
+        display: none
+      }
+
+      #hero {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+        padding-top: 5.5rem
+      }
+
+      .hcard {
+        display: none
+      }
+
+      .wrap {
+        padding: 0 1.5rem
+      }
+
+      .beg,
+      .csg,
+      .aig,
+      .domg,
+      .pjg,
+      .cog {
+        grid-template-columns: 1fr
+      }
+
+      .pjc.ft {
+        grid-column: span 1
+      }
+
+      .csg {
+        grid-template-columns: 1fr 1fr
+      }
+
+      footer {
+        padding: 1.5rem;
+        flex-direction: column;
+        gap: .65rem;
+        text-align: center
+      }
+
+      .st {
+        font-size: 2.4rem
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <canvas id="c"></canvas>
+
+  <nav id="nav">
+    <div class="nm">SK<b>Kalli</b><s>.</s></div>
+    <ul class="nav-ul">
+      <li><a href="#backend">Stack</a></li>
+      <li><a href="#cloud">Azure</a></li>
+      <li><a href="#ai">AI</a></li>
+      <li><a href="#domains">Domains</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="mailto:kallileelasaikumar@gmail.com" class="nav-cta">&#x2714; Hire Me</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div>
+      <div class="avail">
+        <div class="avail-dot"></div>
+        <span class="avail-badge">AVAILABLE NOW</span>
+        <span class="avail-txt">Full-time &middot; Contract &middot; Remote or Hyderabad</span>
+      </div>
+      <h1 class="hero-name">SAI<br>KUMAR<br><span class="a">KALLI</span></h1>
+      <div class="hero-role">
+        <span id="ty">Full Stack .NET Engineer</span><span class="caret"></span><br>
+        <span style="font-size:.85rem">Cloud-Native &middot; Azure &middot; AI-Augmented</span>
+      </div>
+      <div class="domains">
+        <span class="db fin">&#x26A1; FinTech / Audit</span>
+        <span class="db hlt">&#x1F3E5; HealthCare</span>
+        <span class="db gov">&#x1F3DB; GovTech</span>
+        <span class="db cld">&#x2601;&#xFE0F; Azure Cloud</span>
+      </div>
+      <div class="stats">
+        <div>
+          <div class="stn" data-count="4">0</div>
+          <div class="stl">Years Exp.</div>
+        </div>
+        <div>
+          <div class="stn" data-count="2">0</div>
+          <div class="stl">Companies</div>
+        </div>
+        <div>
+          <div class="stn">30%</div>
+          <div class="stl">API Boost</div>
+        </div>
+      </div>
+      <div class="btns">
+        <a href="#projects" class="btn-p">View Work</a>
+        <a href="mailto:kallileelasaikumar@gmail.com" class="btn-g">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14">
+            <path
+              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          Email Me
+        </a>
+      </div>
+    </div>
+    <div class="hcard">
+      <div class="hcl">
+        <svg viewBox="0 0 96 96" style="width:13px;height:13px;flex-shrink:0" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ag1" x1="0" y1="0" x2="48" y2="96" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#114a8b" />
+              <stop offset="1" stop-color="#0669bc" />
+            </linearGradient>
+            <linearGradient id="ag2" x1="52" y1="26" x2="96" y2="96" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#3ccbf4" />
+              <stop offset="1" stop-color="#2892df" />
+            </linearGradient>
+          </defs>
+          <path d="M33 4h29L30 90a4 4 0 01-4 3H5a4 4 0 01-4-6L28 7a4 4 0 014-3z" fill="url(#ag1)" />
+          <path d="M71 60H29a2 2 0 00-1 3l27 26a4 4 0 003 1h24z" fill="#0078d4" />
+          <path d="M68 7a4 4 0 00-4-3H34a4 4 0 014 3L66 88a4 4 0 01-4 6h30a4 4 0 004-6z" fill="url(#ag2)" />
+        </svg>
+        Azure Portal &mdash; Developer Profile
+      </div>
+      <div class="hct">LIVE STATUS</div>
+      <div class="hcr"><span class="hck">Role</span><span class="hcv">Software Engineer</span></div>
+      <div class="hcr"><span class="hck">Company</span><span class="hcv">Ascendion Eng.</span></div>
+      <div class="hcr"><span class="hck">Domain</span><span class="hcv gd">FinTech &mdash; Audit</span></div>
+      <div class="hcr"><span class="hck">Stack</span><span class="hcv">.NET Core + Angular</span></div>
+      <div class="hcr"><span class="hck">Cloud</span><span class="hcv">Microsoft Azure</span></div>
+      <div class="hcr"><span class="hck">AI Tools</span><span class="hcv g">Claude &middot; GPT &middot; Copilot</span>
+      </div>
+      <div class="hcr"><span class="hck">Status</span><span class="hcv g">&#x25CF; Available</span></div>
+      <div class="hcm">
+        <div class="hcmn">30%</div>
+        <div class="hcml">API Performance Gain &middot; Production</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section id="quote">
+    <div class="qi rv">
+      <div class="qm">&ldquo;</div>
+      <p class="qt">We are the <strong>archaeologists of the future</strong> &mdash;<br>every API we forge, every
+        microservice we deploy,<br>is a fossil that will outlive the hand that wrote it.<br><strong>Build with intent.
+          The systems remember.</strong></p>
+      <div class="qa">Build with precision &middot; Ship with purpose &middot; Scale beyond time</div>
+    </div>
+  </section>
+
+  <!-- BACKEND -->
+  <section id="backend">
+    <div class="wrap">
+      <div class="sh rv">
+        <div class="sn">01 &middot; Backend Engineering</div>
+        <h2 class="st">The <em>engine</em><br>room</h2>
+        <p class="ss">Production-grade .NET architecture powering enterprise systems across finance, healthcare and
+          government.</p>
+      </div>
+      <div class="beg">
+        <div class="rv">
+          <div class="bsl">
+            <div class="bli">
+              <div class="bli-ico">&#x2699;&#xFE0F;</div>
+              <div style="flex:1">
+                <div class="bli-n">.NET Core 8 / C#</div>
+                <div class="bli-d">Enterprise APIs, Web Jobs, background services, clean architecture</div>
+              </div>
+              <div class="lv le">Expert</div>
+            </div>
+            <div class="bli">
+              <div class="bli-ico">&#x1F517;</div>
+              <div style="flex:1">
+                <div class="bli-n">RESTful Web API Design</div>
+                <div class="bli-d">OpenAPI/Swagger, versioning, JWT + Azure AD/Entra ID auth</div>
+              </div>
+              <div class="lv le">Expert</div>
+            </div>
+            <div class="bli">
+              <div class="bli-ico">&#x1F4E1;</div>
+              <div style="flex:1">
+                <div class="bli-n">SignalR &middot; Real-time Systems</div>
+                <div class="bli-d">Live dashboards, workforce notifications, event-driven updates</div>
+              </div>
+              <div class="lv la">Advanced</div>
+            </div>
+            <div class="bli">
+              <div class="bli-ico">&#x1F5C4;&#xFE0F;</div>
+              <div style="flex:1">
+                <div class="bli-n">SQL Server + EF Core</div>
+                <div class="bli-d">Stored procs, LINQ, Cosmos DB, ADO.NET high-performance queries</div>
+              </div>
+              <div class="lv le">Expert</div>
+            </div>
+            <div class="bli">
+              <div class="bli-ico">&#x1F3DB;&#xFE0F;</div>
+              <div style="flex:1">
+                <div class="bli-n">Microservices Architecture</div>
+                <div class="bli-d">Clean Architecture, Repository, DI, SOLID-first design patterns</div>
+              </div>
+              <div class="lv la">Advanced</div>
+            </div>
+            <div class="bli">
+              <div class="bli-ico">&#x1F9EA;</div>
+              <div style="flex:1">
+                <div class="bli-n">Testing &middot; NUnit + Moq</div>
+                <div class="bli-d">Unit &amp; integration testing, SonarQube quality gates, Contrast</div>
+              </div>
+              <div class="lv lp">Proficient</div>
+            </div>
+          </div>
+        </div>
+        <div class="rv d2">
+          <div class="ac">
+            <div class="ac-t">&#x25B8; Clean Architecture Layers</div>
+            <div class="ac-l" data-n="04">
+              <div class="ac-lt">Presentation</div>
+              <div class="ac-li"><span class="chip h">Web API</span><span class="chip h">Angular 17</span><span
+                  class="chip">Swagger</span><span class="chip">React</span></div>
+            </div>
+            <div class="ac-l" data-n="03">
+              <div class="ac-lt">Application</div>
+              <div class="ac-li"><span class="chip h">CQRS</span><span class="chip h">MediatR</span><span
+                  class="chip">FluentVal</span><span class="chip">AutoMapper</span></div>
+            </div>
+            <div class="ac-l" data-n="02">
+              <div class="ac-lt">Domain / Core</div>
+              <div class="ac-li"><span class="chip h">Entities</span><span class="chip h">Interfaces</span><span
+                  class="chip">DDD</span><span class="chip">Value Obj</span></div>
+            </div>
+            <div class="ac-l" data-n="01">
+              <div class="ac-lt">Infrastructure</div>
+              <div class="ac-li"><span class="chip h">EF Core</span><span class="chip h">Azure Bus</span><span
+                  class="chip h">Redis</span><span class="chip">Cosmos DB</span></div>
+            </div>
+          </div>
+          <div class="ac">
+            <div class="ac-t">&#x25B8; Frontend &amp; Dev Practices</div>
+            <div class="ac-li" style="padding:.4rem 0;flex-wrap:wrap;gap:.32rem"><span class="chip h">Angular
+                17</span><span class="chip h">TypeScript</span><span class="chip">React</span><span
+                class="chip">RxJS</span><span class="chip">CI/CD</span><span class="chip h">API Mgmt</span><span
+                class="chip">Git</span><span class="chip">Agile</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AZURE -->
+  <section id="cloud">
+    <div class="wrap">
+      <div class="cwrap rv">
+        <div>
+          <div class="sn">02 &middot; Cloud</div>
+          <h2 class="st">Azure<br><em>First</em></h2>
+          <p class="ss">Every production system I've shipped runs on Microsoft Azure &mdash; architected, monitored,
+            secured and optimized end-to-end.</p>
+        </div>
+        <div class="azb rv d2">
+          <svg viewBox="0 0 96 96" style="width:48px;height:48px" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="azg1" x1="0" y1="0" x2="48" y2="96" gradientUnits="userSpaceOnUse">
+                <stop offset="0" stop-color="#114a8b" />
+                <stop offset="1" stop-color="#0669bc" />
+              </linearGradient>
+              <linearGradient id="azg2" x1="52" y1="26" x2="96" y2="96" gradientUnits="userSpaceOnUse">
+                <stop offset="0" stop-color="#3ccbf4" />
+                <stop offset="1" stop-color="#2892df" />
+              </linearGradient>
+            </defs>
+            <path d="M33 4h29L30 90a4 4 0 01-4 3H5a4 4 0 01-4-6L28 7a4 4 0 014-3z" fill="url(#azg1)" />
+            <path d="M71 60H29a2 2 0 00-1 3l27 26a4 4 0 003 1h24z" fill="#0078d4" />
+            <path d="M68 7a4 4 0 00-4-3H34a4 4 0 014 3L66 88a4 4 0 01-4 6h30a4 4 0 004-6z" fill="url(#azg2)" />
+          </svg>
+          <div class="azbt">Microsoft Azure</div>
+          <div class="azbs">Primary Cloud Platform</div>
+        </div>
+      </div>
+      <div class="csg rv d1">
+        <div class="cs">
+          <div class="cs-i">&#x1F5A5;&#xFE0F;</div>
+          <div class="cs-n">App Services</div>
+          <div class="cs-d">Hosting .NET APIs with auto-scaling, slot deployments and custom domain SSL</div>
+          <div class="cs-b">Compute</div>
+        </div>
+        <div class="cs">
+          <div class="cs-i">&#x26A1;</div>
+          <div class="cs-n">Azure Functions</div>
+          <div class="cs-d">Serverless background processing, scheduled jobs, event-triggered workloads</div>
+          <div class="cs-b">Serverless</div>
+        </div>
+        <div class="cs">
+          <div class="cs-i">&#x1F4E8;</div>
+          <div class="cs-n">Service Bus</div>
+          <div class="cs-d">Async messaging, decoupled microservice communication, dead-letter handling</div>
+          <div class="cs-b">Messaging</div>
+        </div>
+        <div class="cs">
+          <div class="cs-i">&#x1F5C3;&#xFE0F;</div>
+          <div class="cs-n">Blob Storage</div>
+          <div class="cs-d">Secure document storage for audit artifacts at enterprise scale</div>
+          <div class="cs-b">Storage</div>
+        </div>
+        <div class="cs">
+          <div class="cs-i">&#x1F510;</div>
+          <div class="cs-n">Key Vault</div>
+          <div class="cs-d">Secrets &amp; certificates &mdash; zero hardcoded credentials in production</div>
+          <div class="cs-b">Security</div>
+        </div>
+        <div class="cs">
+          <div class="cs-i">&#x26A1;</div>
+          <div class="cs-n">Redis Cache</div>
+          <div class="cs-d">In-memory caching reducing DB load and improving API throughput</div>
+          <div class="cs-b">Performance</div>
+        </div>
+        <div class="cs">
+          <div class="cs-i">&#x1F4CA;</div>
+          <div class="cs-n">App Insights + Monitor</div>
+          <div class="cs-d">Full observability &mdash; distributed traces, custom metrics, alert rules</div>
+          <div class="cs-b">Observability</div>
+        </div>
+        <div class="cs">
+          <div class="cs-i">&#x1F511;</div>
+          <div class="cs-n">Azure AD / Entra ID</div>
+          <div class="cs-d">JWT auth, Managed Identity, RBAC &mdash; enterprise identity without sprawl</div>
+          <div class="cs-b">Identity</div>
+        </div>
+      </div>
+      <div class="cn rv d2">
+        <div style="font-size:1.1rem">&#x1F3AF;</div>
+        <div class="cn-t"><strong>Next Goal:</strong> Azure Solutions Architect Expert (AZ-305) &mdash; multi-region
+          architectures, hybrid connectivity and enterprise-scale landing zones.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI -->
+  <section id="ai">
+    <div class="wrap">
+      <div class="sh rv">
+        <div class="sn">03 &middot; AI &amp; LLMs</div>
+        <h2 class="st">AI-<em>Native</em><br>Developer</h2>
+        <p class="ss">Integrating LLMs and AI platforms into real development workflows &mdash; amplifying code quality,
+          velocity and system intelligence every sprint.</p>
+      </div>
+      <div class="ai-intro rv">In the era where <strong>context is the new compute</strong>, I leverage foundation
+        models and AI-powered tools to accelerate architecture decisions, code reviews and documentation &mdash;
+        bringing a measurably sharper edge to every delivery.</div>
+      <div class="aig">
+        <div class="aic rv">
+          <div class="ai-logo"><svg viewBox="0 0 36 36" style="width:38px;height:38px">
+              <rect width="36" height="36" rx="5" fill="#c96442" />
+              <line x1="9" y1="11" x2="27" y2="11" stroke="white" stroke-width="2.5" stroke-linecap="round" />
+              <line x1="9" y1="18" x2="22" y2="18" stroke="white" stroke-width="2.5" stroke-linecap="round" />
+              <line x1="9" y1="25" x2="16" y2="25" stroke="white" stroke-width="2.5" stroke-linecap="round" />
+            </svg></div>
+          <div class="ai-n">Claude (Anthropic)</div>
+          <div class="ai-cat">Foundation Model &middot; Reasoning</div>
+          <div class="ai-d">Complex architectural reasoning, API design reviews, technical documentation and system
+            design &mdash; exceptional at nuanced .NET and Azure decision-making.</div>
+          <div class="ai-u">
+            <div class="ai-ul">Use Case</div>
+            <div class="ai-ut">Architecture &middot; Code reviews &middot; Tech docs</div>
+          </div>
+        </div>
+        <div class="aic rv d1">
+          <div class="ai-logo"><svg viewBox="0 0 36 36" style="width:38px;height:38px">
+              <rect width="36" height="36" rx="5" fill="#10a37f" />
+              <circle cx="18" cy="18" r="9" fill="none" stroke="white" stroke-width="2" opacity=".35" />
+              <circle cx="18" cy="18" r="5.5" fill="white" opacity=".9" />
+              <circle cx="18" cy="18" r="2.5" fill="#10a37f" />
+            </svg></div>
+          <div class="ai-n">ChatGPT / GPT-4o</div>
+          <div class="ai-cat">Foundation Model &middot; OpenAI</div>
+          <div class="ai-d">Rapid prototyping, SQL query generation, test case brainstorming and boilerplate
+            acceleration with strong multi-modal support.</div>
+          <div class="ai-u">
+            <div class="ai-ul">Use Case</div>
+            <div class="ai-ut">Prototyping &middot; SQL gen &middot; Test scaffolding</div>
+          </div>
+        </div>
+        <div class="aic rv d2">
+          <div class="ai-logo"><svg viewBox="0 0 36 36" style="width:38px;height:38px">
+              <rect width="36" height="36" rx="5" fill="#161b22" />
+              <circle cx="18" cy="15" r="7.5" fill="none" stroke="#3ecf8e" stroke-width="1.5" />
+              <circle cx="15" cy="14" r="1.8" fill="#3ecf8e" />
+              <circle cx="21" cy="14" r="1.8" fill="#3ecf8e" />
+              <path d="M14 18.5c1 2.5 8 2.5 8 0" stroke="#3ecf8e" stroke-width="1.5" stroke-linecap="round" />
+              <path d="M11 27h14" stroke="#3ecf8e" stroke-width="1.5" stroke-linecap="round" opacity=".4" />
+              <path d="M15 24v3M21 24v3" stroke="#3ecf8e" stroke-width="1.5" stroke-linecap="round" opacity=".4" />
+            </svg></div>
+          <div class="ai-n">GitHub Copilot</div>
+          <div class="ai-cat">AI Pair Programmer &middot; Microsoft</div>
+          <div class="ai-d">In-editor AI deeply integrated into daily .NET development. Autocomplete, function
+            generation, unit tests and PR reviews &mdash; always on in production codebases.</div>
+          <div class="ai-u">
+            <div class="ai-ul">Use Case</div>
+            <div class="ai-ut">In-editor coding &middot; Autocomplete &middot; PR reviews</div>
+          </div>
+        </div>
+        <div class="aic rv d1">
+          <div class="ai-logo"><svg viewBox="0 0 36 36" style="width:38px;height:38px">
+              <rect width="36" height="36" rx="6" fill="#060810" />
+              <polygon points="18,4 31,11.5 31,24.5 18,32 5,24.5 5,11.5" fill="none" stroke="#0af" stroke-width="1.4" />
+              <polygon points="18,9 26,14 26,22 18,27 10,22 10,14" fill="none" stroke="#0af" stroke-width=".9"
+                opacity=".4" />
+              <circle cx="18" cy="18" r="3.5" fill="#0af" opacity=".25" />
+              <circle cx="18" cy="18" r="2" fill="#0af" />
+              <circle cx="18" cy="18" r=".9" fill="white" />
+            </svg></div>
+          <div class="ai-n">Antigravity</div>
+          <div class="ai-cat">AI Platform &middot; Deployment</div>
+          <div class="ai-d">AI-powered development and deployment platform &mdash; accelerating full-stack delivery
+            pipelines, infrastructure automation and DevOps workflows.</div>
+          <div class="ai-u">
+            <div class="ai-ul">Use Case</div>
+            <div class="ai-ut">Deployment &middot; DevOps automation &middot; Pipelines</div>
+          </div>
+        </div>
+        <div class="aic rv d2">
+          <div class="ai-logo"><svg viewBox="0 0 36 36" style="width:38px;height:38px">
+              <rect width="36" height="36" rx="5" fill="#001a3a" />
+              <g transform="translate(4,4) scale(.29)">
+                <path d="M33 4h29L30 90a4 4 0 01-4 3H5a4 4 0 01-4-6L28 7a4 4 0 014-3z" fill="#114a8b" />
+                <path d="M71 60H29a2 2 0 00-1 3l27 26a4 4 0 003 1h24z" fill="#0078d4" />
+                <path d="M68 7a4 4 0 00-4-3H34a4 4 0 014 3L66 88a4 4 0 01-4 6h30a4 4 0 004-6z" fill="#3ccbf4" />
+              </g>
+            </svg></div>
+          <div class="ai-n">Azure OpenAI Service</div>
+          <div class="ai-cat">Cloud AI &middot; Microsoft</div>
+          <div class="ai-d">Enterprise-grade OpenAI models on Azure &mdash; secure, compliant, Azure AD integrated. Used
+            for building intelligent AI features inside .NET enterprise solutions.</div>
+          <div class="ai-u">
+            <div class="ai-ul">Use Case</div>
+            <div class="ai-ut">Enterprise AI &middot; Secure LLM APIs</div>
+          </div>
+        </div>
+        <div class="aic rv d3">
+          <div class="ai-logo"><svg viewBox="0 0 36 36" style="width:38px;height:38px">
+              <rect width="36" height="36" rx="5" fill="#0d0e1c" />
+              <circle cx="18" cy="18" r="8.5" fill="none" stroke="#0af" stroke-width="1.2" stroke-dasharray="3,2.2" />
+              <circle cx="18" cy="9.5" r="2" fill="#0af" />
+              <circle cx="25.5" cy="22.5" r="2" fill="#f5c842" />
+              <circle cx="10.5" cy="22.5" r="2" fill="#ff8c55" />
+              <line x1="18" y1="9.5" x2="25.5" y2="22.5" stroke="#0af" stroke-width="1" opacity=".45" />
+              <line x1="25.5" y1="22.5" x2="10.5" y2="22.5" stroke="#0af" stroke-width="1" opacity=".45" />
+              <line x1="10.5" y1="22.5" x2="18" y2="9.5" stroke="#0af" stroke-width="1" opacity=".45" />
+            </svg></div>
+          <div class="ai-n">LLM Integration Patterns</div>
+          <div class="ai-cat">Architecture &middot; Applied AI</div>
+          <div class="ai-d">RAG architectures, prompt engineering, embedding pipelines and integrating AI APIs into .NET
+            backends for intelligent feature delivery at scale.</div>
+          <div class="ai-u">
+            <div class="ai-ul">Use Case</div>
+            <div class="ai-ut">RAG &middot; Prompt engineering &middot; AI APIs</div>
+          </div>
+        </div>
+      </div>
+      <div class="aitr rv d2">
+        <span
+          style="font-size:.52rem;color:var(--muted);letter-spacing:.18em;text-transform:uppercase;margin-right:.45rem">Also
+          in toolkit &rarr;</span>
+        <span class="aitp">Semantic Kernel (.NET)</span><span class="aitp">LangChain</span><span class="aitp">Copilot
+          Studio</span><span class="aitp">Perplexity AI</span><span class="aitp">Cursor IDE</span><span
+          class="aitp">Gemini API</span><span class="aitp">Prompt Engineering</span><span class="aitp">Vector DBs</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOMAINS -->
+  <section id="domains">
+    <div class="wrap">
+      <div class="sh rv">
+        <div class="sn">04 &middot; Industries</div>
+        <h2 class="st">Domain<br><em>Depth</em></h2>
+        <p class="ss">Production experience across three complex industries &mdash; each with distinct compliance
+          demands, scalability challenges and business stakes.</p>
+      </div>
+      <div class="domg">
+        <div class="domc fin rv">
+          <div class="dal"></div>
+          <div class="dom-i">&#x1F4B0;</div>
+          <div class="dom-n">FINTECH</div>
+          <div class="dom-s">Audit &middot; Asset Management</div>
+          <div class="dom-p">Architecting an enterprise Audit Automation Platform for asset management clients at
+            Ascendion &mdash; compliance workflows, audit trail integrity and financial data pipelines meeting rigorous
+            regulatory standards.</div>
+          <div class="dom-tags"><span class="dtt">Audit Automation</span><span class="dtt">Asset Management</span><span
+              class="dtt">Compliance</span><span class="dtt">Financial APIs</span><span class="dtt">Cosmos DB</span>
+          </div>
+        </div>
+        <div class="domc hlt rv d1">
+          <div class="dal"></div>
+          <div class="dom-i">&#x1F3E5;</div>
+          <div class="dom-n">HEALTHCARE</div>
+          <div class="dom-s">Workforce &middot; Scheduling</div>
+          <div class="dom-p">Built a real-time Workforce Management System &mdash; scheduling, availability and
+            compliance tracking. SignalR for live updates, Azure Service Bus for reliable async event processing.</div>
+          <div class="dom-tags"><span class="dtt">WFM Systems</span><span class="dtt">Real-time SignalR</span><span
+              class="dtt">Compliance</span><span class="dtt">Scheduling APIs</span><span class="dtt">Redis</span></div>
+        </div>
+        <div class="domc gov rv d2">
+          <div class="dal"></div>
+          <div class="dom-i">&#x1F3DB;&#xFE0F;</div>
+          <div class="dom-n">GOVTECH</div>
+          <div class="dom-s">Irrigation &middot; Data Systems</div>
+          <div class="dom-p">Delivered MICADA &mdash; a government irrigation management platform. Data entry modules,
+            reporting dashboards and complex SQL Server procedures for a mission-critical state-level system.</div>
+          <div class="dom-tags"><span class="dtt">ASP.NET Web Forms</span><span class="dtt">SQL Reporting</span><span
+              class="dtt">Dashboards</span><span class="dtt">Stored Procs</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="sh rv">
+        <div class="sn">05 &middot; Career</div>
+        <h2 class="st">Where I've<br><em>shipped</em></h2>
+      </div>
+      <div class="tl">
+        <div class="tli">
+          <div class="tld"></div>
+          <div class="tl-p">Apr 2024 &mdash; Present</div>
+          <div class="tl-co">Ascendion Engineering</div>
+          <div class="tl-ro">Software Engineer &middot; Hyderabad, India</div>
+          <div class="tlb">
+            <div class="tlpt gd">Audit Tool Automation Platform &middot; FinTech</div>
+            <ul class="tlul">
+              <li>Architecting a <strong>cloud-native audit automation platform</strong> for asset management clients
+                &mdash; full SDLC ownership</li>
+              <li>Improved API response times by <strong>25&ndash;30%</strong> via targeted profiling and Azure
+                optimization</li>
+              <li>Built scalable services with <strong>Azure Functions, Blob Storage, Key Vault</strong> and App
+                Services</li>
+              <li>Enhanced code coverage with <strong>NUnit + Moq</strong>; quality gates via SonarQube &amp; Contrast
+              </li>
+              <li>Leveraged <strong>GitHub Copilot</strong> daily to accelerate velocity and code quality</li>
+              <li>Validated contracts via <strong>Swagger and Azure API Management</strong></li>
+            </ul>
+          </div>
+        </div>
+        <div class="tli">
+          <div class="tld"></div>
+          <div class="tl-p">Aug 2021 &mdash; Mar 2024</div>
+          <div class="tl-co">People Tech Group Inc.</div>
+          <div class="tl-ro">Associate Software Engineer &middot; Hyderabad, India</div>
+          <div class="tlb">
+            <div class="tlpt gr">Workforce Management System &middot; HealthCare</div>
+            <ul class="tlul">
+              <li>Built RESTful APIs for <strong>workforce scheduling, availability and compliance workflows</strong>
+              </li>
+              <li>Implemented <strong>real-time features via SignalR</strong> for live shift notifications and updates
+              </li>
+              <li>Integrated <strong>Azure Service Bus</strong> for async processing; <strong>Redis Cache</strong> for
+                throughput</li>
+              <li>Developed responsive <strong>Angular frontend</strong> with TypeScript and Bootstrap</li>
+            </ul>
+            <div class="tlpt wm">MICADA &mdash; Government Irrigation Platform &middot; GovTech</div>
+            <ul class="tlul">
+              <li>Built modules using <strong>ASP.NET Web Forms</strong> for government irrigation workflows</li>
+              <li>Created <strong>reporting dashboards</strong> and user management features</li>
+              <li>Wrote complex <strong>stored procedures, views and SQL Server queries</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="sh rv">
+        <div class="sn">06 &middot; Work</div>
+        <h2 class="st">Things I've<br><em>built</em></h2>
+      </div>
+      <div class="pjg">
+        <div class="pjc ft rv">
+          <div class="pjmk">
+            <div class="pmbr">
+              <div class="pmba">
+                <div class="pmd" style="background:#ff5f57"></div>
+                <div class="pmd" style="background:#ffbd2e"></div>
+                <div class="pmd" style="background:#28c840"></div>
+              </div>
+              <div class="pmbo">
+                <div class="pml a"></div>
+                <div class="pml b"></div>
+                <div class="pml c"></div>
+                <div class="pmcl">
+                  <div class="pmcb h"></div>
+                  <div class="pmcb g"></div>
+                  <div class="pmcb"></div>
+                  <div class="pmcb"></div>
+                  <div class="pmcb h"></div>
+                  <div class="pmcb r"></div>
+                </div>
+              </div>
+            </div><span class="pjbg pbfin">&#x2605; FinTech &mdash; Audit</span>
+          </div>
+          <div class="pji">
+            <div class="pjdt">Featured &middot; Current Role &middot; Ascendion Engineering</div>
+            <div class="pjt">Audit Tool Automation Platform</div>
+            <p class="pjd">Enterprise cloud-native audit automation for asset management firms. Full SDLC ownership.
+              25&ndash;30% API performance improvement in production. AI-powered tooling, automated audit trail,
+              document workflows via Blob Storage, zero-secret architecture via Key Vault.</p>
+            <div class="pjtech"><span class="ptt">.NET Core 8</span><span class="ptt">C#</span><span class="ptt">Angular
+                17</span><span class="ptt">Azure Functions</span><span class="ptt">Service Bus</span><span
+                class="ptt">Cosmos DB</span><span class="ptt">Key Vault</span><span class="ptt">App Insights</span><span
+                class="ptt">GitHub Copilot</span></div>
+          </div>
+        </div>
+        <div class="pjc rv d1">
+          <div class="pjmk">
+            <div class="pmbr">
+              <div class="pmba">
+                <div class="pmd" style="background:#ff5f57"></div>
+                <div class="pmd" style="background:#ffbd2e"></div>
+                <div class="pmd" style="background:#28c840"></div>
+              </div>
+              <div class="pmbo">
+                <div class="pml a" style="width:40%"></div>
+                <div class="pml b"></div>
+                <div class="pmcl" style="grid-template-columns:1fr 1fr">
+                  <div class="pmcb r"></div>
+                  <div class="pmcb h"></div>
+                </div>
+              </div>
+            </div><span class="pjbg pbhc">HealthCare</span>
+          </div>
+          <div class="pji">
+            <div class="pjdt">Enterprise &middot; Real-time</div>
+            <div class="pjt">Workforce Management System</div>
+            <p class="pjd">Real-time healthcare workforce scheduling with live SignalR notifications. Azure Service Bus,
+              Redis caching, and responsive Angular UI for field staff.</p>
+            <div class="pjtech"><span class="ptt">.NET Core</span><span class="ptt">SignalR</span><span
+                class="ptt">Redis</span><span class="ptt">Service Bus</span><span class="ptt">Angular</span><span
+                class="ptt">SQL Server</span></div>
+          </div>
+        </div>
+        <div class="pjc rv d2">
+          <div class="pjmk" style="background:linear-gradient(135deg,#080918,#0e0620)">
+            <div class="pmbr">
+              <div class="pmba">
+                <div class="pmd" style="background:#ff5f57"></div>
+                <div class="pmd" style="background:#ffbd2e"></div>
+                <div class="pmd" style="background:#28c840"></div>
+              </div>
+              <div class="pmbo">
+                <div style="font-size:.5rem;color:var(--a1);letter-spacing:.2em;margin-bottom:.35rem">DHRUV &#x2736;
+                </div>
+                <div class="pml a" style="width:50%"></div>
+                <div class="pmcl" style="grid-template-columns:1fr 1fr">
+                  <div class="pmcb" style="background:rgba(123,94,167,.2)"></div>
+                  <div class="pmcb h"></div>
+                </div>
+              </div>
+            </div><span class="pjbg pbsd">Side Project</span>
+          </div>
+          <div class="pji">
+            <div class="pjdt">Personal &middot; Full Stack</div>
+            <div class="pjt">Dhruv Application</div>
+            <p class="pjd">Full-stack personal project &mdash; architecture to Azure deployment. Advanced .NET patterns,
+              JWT auth, Entity Framework Core, modern Angular frontend with real-time features.</p>
+            <div class="pjtech"><span class="ptt">.NET Core</span><span class="ptt">Angular</span><span
+                class="ptt">Azure</span><span class="ptt">EF Core</span><span class="ptt">JWT Auth</span></div>
+          </div>
+        </div>
+        <div class="pjc rv d3">
+          <div class="pjmk">
+            <div class="pmbr">
+              <div class="pmba">
+                <div class="pmd" style="background:#ff5f57"></div>
+                <div class="pmd" style="background:#ffbd2e"></div>
+                <div class="pmd" style="background:#28c840"></div>
+              </div>
+              <div class="pmbo">
+                <div class="pml" style="width:45%;background:rgba(255,140,85,.15)"></div>
+                <div class="pml b"></div>
+                <div class="pmcl" style="grid-template-columns:1fr">
+                  <div class="pmcb" style="height:48px"></div>
+                </div>
+              </div>
+            </div><span class="pjbg pbgov">GovTech</span>
+          </div>
+          <div class="pji">
+            <div class="pjdt">Government &middot; Data Systems</div>
+            <div class="pjt">MICADA &mdash; Irrigation Platform</div>
+            <p class="pjd">State-level government irrigation management. Data entry forms, reporting dashboards, user
+              management. Complex SQL Server stored procedures and Web API modules.</p>
+            <div class="pjtech"><span class="ptt">ASP.NET Web Forms</span><span class="ptt">Web API</span><span
+                class="ptt">SQL Server</span><span class="ptt">Reporting</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="cog">
+        <div class="rv">
+          <h2 class="coh">Let's build<br><span>something</span>great</h2>
+          <p class="cos">Open to full-time roles, contract engagements and interesting collaborations. Deep .NET + Azure
+            expertise, AI-augmented workflows and a track record of shipping production-grade systems.</p>
+          <a href="mailto:kallileelasaikumar@gmail.com" class="copb">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            Send me an email
+          </a>
+        </div>
+        <div class="rv d2">
+          <div class="cll">
+            <a href="mailto:kallileelasaikumar@gmail.com" class="cli">
+              <div class="clico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg></div>
+              <div>
+                <div class="cllb">Email (Primary)</div>
+                <div class="cllv">kallileelasaikumar@gmail.com</div>
+              </div>
+            </a>
+            <a href="https://linkedin.com/in/saikumarkalli" target="_blank" rel="noopener" class="cli">
+              <div class="clico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg></div>
+              <div>
+                <div class="cllb">LinkedIn</div>
+                <div class="cllv">linkedin.com/in/saikumarkalli</div>
+              </div>
+            </a>
+            <a href="https://github.com/saikumarkalli" target="_blank" rel="noopener" class="cli">
+              <div class="clico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path
+                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
+                </svg></div>
+              <div>
+                <div class="cllb">GitHub</div>
+                <div class="cllv">github.com/saikumarkalli</div>
+              </div>
+            </a>
+            <a href="tel:+918179242086" class="cli">
+              <div class="clico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path
+                    d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5 19.79 19.79 0 01.22 1.5A2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.61-.61a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z" />
+                </svg></div>
+              <div>
+                <div class="cllb">Phone</div>
+                <div class="cllv">+91 8179242086</div>
+              </div>
+            </a>
+          </div>
+          <div class="avb">
+            <div class="avbd"></div>
+            <div class="avbt">Currently available &middot; Hyderabad, India &middot; Open to relocation</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="ftl">&copy; 2025 Sai Kumar Kalli &middot; Full Stack .NET Developer &middot; Hyderabad</div>
+    <div class="ftr">Built with <span>precision</span> &middot; Deployed on <span>Azure</span></div>
+  </footer>
+
+  <script>
+    // NAV SCROLL
+    var nav = document.getElementById('nav');
+    window.addEventListener('scroll', function () {
+      nav.classList.toggle('sc', window.scrollY > 50);
+    });
+
+    // GALAXY CANVAS
+    var cv = document.getElementById('c');
+    var ctx = cv.getContext('2d');
+    var stars = [], nebs = [], shots = [];
+
+    var lastW = 0, lastH = 0;
+    function resize() {
+      var w = window.innerWidth, h = window.innerHeight;
+      if (w === lastW && Math.abs(h - lastH) < 100) return;
+      lastW = w; lastH = h;
+      cv.width = w;
+      cv.height = h;
+      buildScene();
+    }
+
+    function buildScene() {
+      stars = []; nebs = []; shots = [];
+      var W = cv.width, H = cv.height;
+
+      for (var i = 0; i < 280; i++) {
+        var t = Math.random();
+        stars.push({
+          x: Math.random() * W, y: Math.random() * H,
+          r: t < .6 ? Math.random() * .55 + .18 : t < .88 ? Math.random() * .85 + .45 : Math.random() * 1.3 + .9,
+          o: t < .6 ? Math.random() * .16 + .04 : t < .88 ? Math.random() * .28 + .1 : Math.random() * .45 + .22,
+          tw: Math.random() * 6.28, ts: Math.random() * .016 + .004,
+          vx: (Math.random() - .5) * (t < .6 ? .03 : .08),
+          vy: (Math.random() - .5) * (t < .6 ? .03 : .08),
+          blue: Math.random() > .88, warm: Math.random() > .93
+        });
+      }
+
+      for (var j = 0; j < 5; j++) {
+        nebs.push({
+          x: Math.random() * W, y: Math.random() * H,
+          r: Math.random() * 190 + 70,
+          az: Math.random() > .5,
+          o: Math.random() * .038 + .01
+        });
+      }
+
+      for (var k = 0; k < 3; k++) {
+        addShot(k * 110);
+      }
+    }
+
+    function addShot(delay) {
+      shots.push({
+        x: Math.random() * cv.width * .7,
+        y: Math.random() * cv.height * .4,
+        len: Math.random() * 100 + 50,
+        spd: Math.random() * 3.2 + 2.2,
+        ang: .7854 + (Math.random() - .5) * .4,
+        life: 0, max: Math.random() * 70 + 40,
+        delay: delay !== undefined ? delay : Math.floor(Math.random() * 320)
+      });
+    }
+
+    function frame() {
+      ctx.clearRect(0, 0, cv.width, cv.height);
+
+      // Nebula blobs
+      for (var n = 0; n < nebs.length; n++) {
+        var nb = nebs[n];
+        var g = ctx.createRadialGradient(nb.x, nb.y, 0, nb.x, nb.y, nb.r);
+        var col = nb.az ? '0,110,200' : '55,45,130';
+        g.addColorStop(0, 'rgba(' + col + ',' + nb.o + ')');
+        g.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(nb.x, nb.y, nb.r, 0, 6.2832); ctx.fill();
+      }
+
+      // Stars
+      for (var s = 0; s < stars.length; s++) {
+        var st = stars[s];
+        st.tw += st.ts;
+        var op = st.o * (.65 + .35 * Math.sin(st.tw));
+        st.x += st.vx; st.y += st.vy;
+        if (st.x < 0) st.x = cv.width; else if (st.x > cv.width) st.x = 0;
+        if (st.y < 0) st.y = cv.height; else if (st.y > cv.height) st.y = 0;
+
+        if (st.r > 1.0) {
+          var g2 = ctx.createRadialGradient(st.x, st.y, 0, st.x, st.y, st.r * 4);
+          var sc = st.blue ? '160,210,255' : st.warm ? '255,235,190' : '255,255,255';
+          g2.addColorStop(0, 'rgba(' + sc + ',' + (op * .4) + ')');
+          g2.addColorStop(1, 'rgba(0,0,0,0)');
+          ctx.fillStyle = g2;
+          ctx.beginPath(); ctx.arc(st.x, st.y, st.r * 4, 0, 6.2832); ctx.fill();
+        }
+
+        var fc = st.blue ? 'rgba(165,212,255,' + op + ')' : st.warm ? 'rgba(255,235,190,' + op + ')' : 'rgba(255,255,255,' + op + ')';
+        ctx.fillStyle = fc;
+        ctx.beginPath(); ctx.arc(st.x, st.y, st.r, 0, 6.2832); ctx.fill();
+      }
+
+      // Shooting stars
+      for (var i = shots.length - 1; i >= 0; i--) {
+        var sh = shots[i];
+        if (sh.delay > 0) { sh.delay--; continue; }
+        sh.life++;
+        if (sh.life > sh.max) { shots.splice(i, 1); addShot(); continue; }
+        var prog = sh.life / sh.max;
+        var al = prog < .3 ? prog / .3 : prog > .7 ? (1 - prog) / .3 : 1;
+        al = Math.min(1, al) * .8;
+        var ex = sh.x + Math.cos(sh.ang) * sh.spd * sh.life;
+        var ey = sh.y + Math.sin(sh.ang) * sh.spd * sh.life;
+        var tx = ex - Math.cos(sh.ang) * sh.len;
+        var ty = ey - Math.sin(sh.ang) * sh.len;
+        var sg = ctx.createLinearGradient(tx, ty, ex, ey);
+        sg.addColorStop(0, 'rgba(195,230,255,0)');
+        sg.addColorStop(1, 'rgba(195,230,255,' + al + ')');
+        ctx.beginPath(); ctx.moveTo(tx, ty); ctx.lineTo(ex, ey);
+        ctx.strokeStyle = sg; ctx.lineWidth = 1.1; ctx.stroke();
+      }
+
+      requestAnimationFrame(frame);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+    frame();
+
+    // TYPEWRITER
+    var phrases = ['Full Stack .NET Engineer', 'Azure Cloud Architect', 'AI-Augmented Developer', 'Microservices Builder', 'API Performance Expert'];
+    var pi = 0, ci = phrases[0].length, del = true;
+    var tyEl = document.getElementById('ty');
+    function type() {
+      var p = phrases[pi];
+      if (del) { ci--; tyEl.textContent = p.substring(0, ci); if (ci < 0) { del = false; pi = (pi + 1) % phrases.length; setTimeout(type, 450); return; } }
+      else { ci++; tyEl.textContent = p.substring(0, ci); if (ci > p.length) { del = true; setTimeout(type, 2000); return; } }
+      setTimeout(type, del ? 45 : 82);
+    }
+    setTimeout(type, 2000);
+
+    // COUNTER
+    function counter(el, n) {
+      var c = 0, step = n / 50;
+      var t = setInterval(function () {
+        c += step; if (c >= n) { el.textContent = n + '+'; clearInterval(t); }
+        else el.textContent = Math.floor(c) + '+';
+      }, 28);
+    }
+
+    // INTERSECTION OBSERVER
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('on');
+          var dc = e.target.getAttribute('data-count');
+          if (dc) {
+            counter(e.target, parseInt(dc));
+            e.target.removeAttribute('data-count');
+          }
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.rv, .tli, [data-count]').forEach(function (el) { io.observe(el); });
+
+    // ACTIVE NAV
+    var navLinks = document.querySelectorAll('.nav-ul a');
+    var sio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          navLinks.forEach(function (l) {
+            l.classList.toggle('on', l.getAttribute('href') === '#' + e.target.id);
+          });
+        }
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('section[id]').forEach(function (s) { sio.observe(s); });
+  </script>
+</body>
+
+</html>
